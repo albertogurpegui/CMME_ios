@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1620AA7C221FF34F00346BEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1620AA7A221FF34F00346BEF /* LoginViewController.swift */; };
+		1620AA7D221FF34F00346BEF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1620AA7B221FF34F00346BEF /* LoginViewController.xib */; };
+		1620AA84221FFB1A00346BEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1620AA83221FFB1A00346BEF /* GoogleService-Info.plist */; };
+		1620AA87222007D800346BEF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1620AA86222007D800346BEF /* UIViewExtension.swift */; };
+		162BD0A9221E9C0B00C1BBE4 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162BD0A7221E9C0B00C1BBE4 /* MainViewController.xib */; };
+		162BD0AA221E9C0B00C1BBE4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0A8221E9C0B00C1BBE4 /* MainViewController.swift */; };
+		162BD0AF221EC11500C1BBE4 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0AE221EC11500C1BBE4 /* Firebase.swift */; };
+		162BD0B2221EC9EE00C1BBE4 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0B1221EC9EE00C1BBE4 /* Patient.swift */; };
+		162BD0B4221ECA0800C1BBE4 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0B3221ECA0800C1BBE4 /* Doctor.swift */; };
+		16A982E22223D9BF00521802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16A982E12223D9BF00521802 /* Assets.xcassets */; };
+		16A982E62223ED4500521802 /* RegisterPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A982E42223ED4500521802 /* RegisterPatientViewController.swift */; };
+		16A982E72223ED4500521802 /* RegisterPatientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16A982E52223ED4500521802 /* RegisterPatientViewController.xib */; };
+		16A982EB2223FD6200521802 /* RegisterDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A982E92223FD6200521802 /* RegisterDoctorViewController.swift */; };
+		16A982EC2223FD6200521802 /* RegisterDoctorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16A982EA2223FD6200521802 /* RegisterDoctorViewController.xib */; };
 		16FA04CB221E8F9800F1D933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04CA221E8F9800F1D933 /* AppDelegate.swift */; };
-		16FA04D2221E8F9A00F1D933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16FA04D1221E8F9A00F1D933 /* Assets.xcassets */; };
 		16FA04D5221E8F9A00F1D933 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16FA04D3221E8F9A00F1D933 /* LaunchScreen.storyboard */; };
 		16FA04E0221E8F9A00F1D933 /* CMMETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04DF221E8F9A00F1D933 /* CMMETests.swift */; };
 		16FA04EB221E8F9A00F1D933 /* CMMEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04EA221E8F9A00F1D933 /* CMMEUITests.swift */; };
 		1D6F87B740B14B3BA8F5911B /* Pods_CMME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0679097ED5FA0B91AAB28277 /* Pods_CMME.framework */; };
-		72E6DDDF292F76E1487EA6F7 /* Pods_CMMETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D9F8058FF6F7920FFC8F3B /* Pods_CMMETests.framework */; };
-		B6E8DE0C9B680145D9CA449F /* Pods_CMMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65736D413B8D6E365CE483CA /* Pods_CMMEUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +47,22 @@
 
 /* Begin PBXFileReference section */
 		0679097ED5FA0B91AAB28277 /* Pods_CMME.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMME.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1620AA7A221FF34F00346BEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1620AA7B221FF34F00346BEF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		1620AA83221FFB1A00346BEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1620AA86222007D800346BEF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		162BD0A7221E9C0B00C1BBE4 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		162BD0A8221E9C0B00C1BBE4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		162BD0AE221EC11500C1BBE4 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		162BD0B1221EC9EE00C1BBE4 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
+		162BD0B3221ECA0800C1BBE4 /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
+		16A982E12223D9BF00521802 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		16A982E42223ED4500521802 /* RegisterPatientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPatientViewController.swift; sourceTree = "<group>"; };
+		16A982E52223ED4500521802 /* RegisterPatientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterPatientViewController.xib; sourceTree = "<group>"; };
+		16A982E92223FD6200521802 /* RegisterDoctorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDoctorViewController.swift; sourceTree = "<group>"; };
+		16A982EA2223FD6200521802 /* RegisterDoctorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterDoctorViewController.xib; sourceTree = "<group>"; };
 		16FA04C7221E8F9800F1D933 /* CMME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FA04CA221E8F9800F1D933 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		16FA04D1221E8F9A00F1D933 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16FA04D4221E8F9A00F1D933 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16FA04D6221E8F9A00F1D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16FA04DB221E8F9A00F1D933 /* CMMETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CMMETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,14 +71,10 @@
 		16FA04E6221E8F9A00F1D933 /* CMMEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CMMEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FA04EA221E8F9A00F1D933 /* CMMEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMEUITests.swift; sourceTree = "<group>"; };
 		16FA04EC221E8F9A00F1D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		293426D8C8BC7D52880CF7D1 /* Pods-CMMEUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMMEUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CMMEUITests/Pods-CMMEUITests.release.xcconfig"; sourceTree = "<group>"; };
 		65736D413B8D6E365CE483CA /* Pods_CMMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D9F8058FF6F7920FFC8F3B /* Pods_CMMETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMMETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C98578D3F4ADA61EC1C2FC66 /* Pods-CMMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CMMETests/Pods-CMMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		E2324DD8D3C6576C8864161C /* Pods-CMME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CMME/Pods-CMME.debug.xcconfig"; sourceTree = "<group>"; };
-		E401466D4F6F809AAE5B9D5C /* Pods-CMMEUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMMEUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CMMEUITests/Pods-CMMEUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8AD9431780CC0F462D0DC42 /* Pods-CMME.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMME.release.xcconfig"; path = "Pods/Target Support Files/Pods-CMME/Pods-CMME.release.xcconfig"; sourceTree = "<group>"; };
-		FB0CD468FE25331F700FE1D6 /* Pods-CMMETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMMETests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CMMETests/Pods-CMMETests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72E6DDDF292F76E1487EA6F7 /* Pods_CMMETests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,18 +97,82 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6E8DE0C9B680145D9CA449F /* Pods_CMMEUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1620AA79221FF32800346BEF /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1620AA7A221FF34F00346BEF /* LoginViewController.swift */,
+				1620AA7B221FF34F00346BEF /* LoginViewController.xib */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		1620AA85222007B500346BEF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1620AA86222007D800346BEF /* UIViewExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		162BD09C221E92CE00C1BBE4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				16A982E82223FCD600521802 /* RegisterDoctorViewController */,
+				16A982E32223ED4500521802 /* RegisterPatientViewController */,
+				162BD0A6221E9C0B00C1BBE4 /* MainViewController */,
+				1620AA79221FF32800346BEF /* LoginViewController */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		162BD0A6221E9C0B00C1BBE4 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				162BD0A8221E9C0B00C1BBE4 /* MainViewController.swift */,
+				162BD0A7221E9C0B00C1BBE4 /* MainViewController.xib */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		162BD0AD221EC0FD00C1BBE4 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				162BD0AE221EC11500C1BBE4 /* Firebase.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		162BD0B0221EC9CD00C1BBE4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				162BD0B1221EC9EE00C1BBE4 /* Patient.swift */,
+				162BD0B3221ECA0800C1BBE4 /* Doctor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		16A982E32223ED4500521802 /* RegisterPatientViewController */ = {
+			isa = PBXGroup;
+			children = (
+				16A982E42223ED4500521802 /* RegisterPatientViewController.swift */,
+				16A982E52223ED4500521802 /* RegisterPatientViewController.xib */,
+			);
+			path = RegisterPatientViewController;
+			sourceTree = "<group>";
+		};
+		16A982E82223FCD600521802 /* RegisterDoctorViewController */ = {
+			isa = PBXGroup;
+			children = (
+				16A982E92223FD6200521802 /* RegisterDoctorViewController.swift */,
+				16A982EA2223FD6200521802 /* RegisterDoctorViewController.xib */,
+			);
+			path = RegisterDoctorViewController;
 			sourceTree = "<group>";
 		};
 		16FA04BE221E8F9800F1D933 = {
@@ -117,10 +200,14 @@
 		16FA04C9221E8F9800F1D933 /* CMME */ = {
 			isa = PBXGroup;
 			children = (
+				1620AA85222007B500346BEF /* Extensions */,
+				162BD0B0221EC9CD00C1BBE4 /* Models */,
+				162BD0AD221EC0FD00C1BBE4 /* Firebase */,
 				162BD09C221E92CE00C1BBE4 /* ViewControllers */,
+				16A982E12223D9BF00521802 /* Assets.xcassets */,
 				16FA04CA221E8F9800F1D933 /* AppDelegate.swift */,
-				16FA04D1221E8F9A00F1D933 /* Assets.xcassets */,
 				16FA04D3221E8F9A00F1D933 /* LaunchScreen.storyboard */,
+				1620AA83221FFB1A00346BEF /* GoogleService-Info.plist */,
 				16FA04D6221E8F9A00F1D933 /* Info.plist */,
 			);
 			path = CMME;
@@ -159,10 +246,6 @@
 			children = (
 				E2324DD8D3C6576C8864161C /* Pods-CMME.debug.xcconfig */,
 				E8AD9431780CC0F462D0DC42 /* Pods-CMME.release.xcconfig */,
-				C98578D3F4ADA61EC1C2FC66 /* Pods-CMMETests.debug.xcconfig */,
-				FB0CD468FE25331F700FE1D6 /* Pods-CMMETests.release.xcconfig */,
-				E401466D4F6F809AAE5B9D5C /* Pods-CMMEUITests.debug.xcconfig */,
-				293426D8C8BC7D52880CF7D1 /* Pods-CMMEUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -178,6 +261,7 @@
 				16FA04C3221E8F9800F1D933 /* Sources */,
 				16FA04C4221E8F9800F1D933 /* Frameworks */,
 				16FA04C5221E8F9800F1D933 /* Resources */,
+				156D6F21866C64FF3F3197CD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,7 +276,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16FA04F2221E8F9A00F1D933 /* Build configuration list for PBXNativeTarget "CMMETests" */;
 			buildPhases = (
-				E4D55AABEE0B8DF0EF4E0F5C /* [CP] Check Pods Manifest.lock */,
 				16FA04D7221E8F9A00F1D933 /* Sources */,
 				16FA04D8221E8F9A00F1D933 /* Frameworks */,
 				16FA04D9221E8F9A00F1D933 /* Resources */,
@@ -211,7 +294,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16FA04F5221E8F9A00F1D933 /* Build configuration list for PBXNativeTarget "CMMEUITests" */;
 			buildPhases = (
-				D7C3052E10F56F658F9A347C /* [CP] Check Pods Manifest.lock */,
 				16FA04E2221E8F9A00F1D933 /* Sources */,
 				16FA04E3221E8F9A00F1D933 /* Frameworks */,
 				16FA04E4221E8F9A00F1D933 /* Resources */,
@@ -274,8 +356,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16A982EC2223FD6200521802 /* RegisterDoctorViewController.xib in Resources */,
+				1620AA7D221FF34F00346BEF /* LoginViewController.xib in Resources */,
 				16FA04D5221E8F9A00F1D933 /* LaunchScreen.storyboard in Resources */,
-				16FA04D2221E8F9A00F1D933 /* Assets.xcassets in Resources */,
+				162BD0A9221E9C0B00C1BBE4 /* MainViewController.xib in Resources */,
+				16A982E72223ED4500521802 /* RegisterPatientViewController.xib in Resources */,
+				1620AA84221FFB1A00346BEF /* GoogleService-Info.plist in Resources */,
+				16A982E22223D9BF00521802 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +383,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		156D6F21866C64FF3F3197CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CMME/Pods-CMME-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CMME/Pods-CMME-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9A160942646AD11DB79542B0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,50 +441,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D7C3052E10F56F658F9A347C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CMMEUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E4D55AABEE0B8DF0EF4E0F5C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CMMETests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -369,7 +448,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1620AA7C221FF34F00346BEF /* LoginViewController.swift in Sources */,
+				162BD0AF221EC11500C1BBE4 /* Firebase.swift in Sources */,
+				162BD0B4221ECA0800C1BBE4 /* Doctor.swift in Sources */,
+				16A982EB2223FD6200521802 /* RegisterDoctorViewController.swift in Sources */,
+				162BD0B2221EC9EE00C1BBE4 /* Patient.swift in Sources */,
 				16FA04CB221E8F9800F1D933 /* AppDelegate.swift in Sources */,
+				1620AA87222007D800346BEF /* UIViewExtension.swift in Sources */,
+				162BD0AA221E9C0B00C1BBE4 /* MainViewController.swift in Sources */,
+				16A982E62223ED4500521802 /* RegisterPatientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +659,6 @@
 		};
 		16FA04F3221E8F9A00F1D933 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C98578D3F4ADA61EC1C2FC66 /* Pods-CMMETests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -594,7 +680,6 @@
 		};
 		16FA04F4221E8F9A00F1D933 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB0CD468FE25331F700FE1D6 /* Pods-CMMETests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -616,7 +701,6 @@
 		};
 		16FA04F6221E8F9A00F1D933 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E401466D4F6F809AAE5B9D5C /* Pods-CMMEUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -637,7 +721,6 @@
 		};
 		16FA04F7221E8F9A00F1D933 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293426D8C8BC7D52880CF7D1 /* Pods-CMMEUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
