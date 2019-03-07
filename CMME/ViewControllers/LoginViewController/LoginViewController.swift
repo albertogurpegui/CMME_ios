@@ -17,13 +17,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView?
     @IBOutlet weak var loginButton: UIButton?
     
-    private var sEmail = ""
-    private var sContraseña = ""
-    private var type: String?
+    private var sEmail = "alberto.gurpegui@gmail.com"
+    private var sContraseña = "123456789"
+    private var userType: TypeUser?
+
     
-    convenience init(typeUser: String) {
+    convenience init(type typeData: TypeUser) {
         self.init()
-        self.type = typeUser
+        self.userType = typeData
     }
 
     init() {
@@ -36,6 +37,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: false)
         backgroundView?.setGradientBackground()
         loginButton?.layer.cornerRadius = 8
         loginButton?.layer.masksToBounds = true
@@ -45,20 +47,26 @@ class LoginViewController: UIViewController {
     
     @IBAction func executeLogin() {
         print("Esta en data holder")
-        if let gmail = gmailUser?.text{
+        /*if let gmail = gmailUser?.text{
             sEmail = gmail
         }
         if let contrasenna = contrasennaUser?.text {
             sContraseña = contrasenna
-        }
-        if let typeUser = type {
+        }*/
+        if let typeUser = userType {
             switch typeUser {
-            case "Doctor":
+            case .doctor:
                 Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser)
-            case "Patient":
+                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController")
+                //let tabBarVC = TabBarNavigationController(type:typeUser)
+                self.present(controller, animated: true, completion: nil)
+            case .patient:
                 Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser)
-            default:
-                break
+                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController")
+                //let tabBarVC = TabBarNavigationController(type:typeUser)
+                self.present(controller, animated: true, completion: nil)
             }
         }
     }

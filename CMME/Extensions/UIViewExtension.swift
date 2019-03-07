@@ -11,8 +11,8 @@ import UIKit
 
 extension UIView {
     func setGradientBackground() {
-        let colorTop = UIColor(red: 51/255.0, green: 105/255.0, blue: 154/255.0, alpha: 1.0)
-        let colorDown = UIColor(red: 100/255.0, green: 198/255.0, blue: 196/255.0, alpha: 1.0)
+        let colorDown = UIColor(red: 51/255.0, green: 105/255.0, blue: 154/255.0, alpha: 1.0)
+        let colorTop = UIColor(red: 100/255.0, green: 198/255.0, blue: 196/255.0, alpha: 1.0)
         let gradientLayer = CAGradientLayer()
         
         gradientLayer.colors = [colorTop.cgColor, colorDown.cgColor]

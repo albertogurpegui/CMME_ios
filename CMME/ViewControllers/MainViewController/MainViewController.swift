@@ -21,7 +21,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var titlePacient: UILabel?
     @IBOutlet weak var buttonRegister: UIButton?
     private var regitro: Bool?
-    
+    private var dataType: TypeUser?
+
     @IBAction func clickRegisterButton() {
         let mainRegisterVC = MainViewController(type: true)
         navigationController?.pushViewController(mainRegisterVC, animated: true)
@@ -38,6 +39,23 @@ class MainViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        if let type = regitro {
+            switch type {
+            case true:
+                self.navigationController?.setNavigationBarHidden(false, animated: false)
+            case false:
+                self.navigationController?.setNavigationBarHidden(true, animated: false)
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func viewDidLoad() {
@@ -94,10 +112,10 @@ class MainViewController: UIViewController {
         if let type = regitro {
             switch type {
             case true:
-                let registerVC = RegisterDoctorViewController(typeUser: "Doctor")
+                let registerVC = RegisterDoctorViewController(type: .doctor)
                 navigationController?.pushViewController(registerVC, animated: true)
             case false:
-                let loginVC = LoginViewController(typeUser: "Doctor")
+                let loginVC = LoginViewController(type: .doctor)
                 navigationController?.pushViewController(loginVC, animated: true)
             }
         }
@@ -108,10 +126,10 @@ class MainViewController: UIViewController {
         if let type = regitro {
             switch type {
             case true:
-                let registerVC = RegisterPatientViewController(typeUser: "Patient")
+                let registerVC = RegisterPatientViewController(type: .patient)
                 navigationController?.pushViewController(registerVC, animated: true)
             case false:
-                let loginVC = LoginViewController(typeUser: "Patient")
+                let loginVC = LoginViewController(type: .patient)
                 navigationController?.pushViewController(loginVC, animated: true)
             }
         }

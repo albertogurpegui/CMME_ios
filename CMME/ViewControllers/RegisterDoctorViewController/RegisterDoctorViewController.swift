@@ -22,11 +22,11 @@ class RegisterDoctorViewController: UIViewController {
     
     private var sGmail = ""
     private var sContraseña = ""
-    private var type: String?
+    private var userType: TypeUser?
     
-    convenience init(typeUser: String) {
+    convenience init(type typeData: TypeUser) {
         self.init()
-        self.type = typeUser
+        self.userType = typeData
     }
     
     init() {
@@ -39,6 +39,7 @@ class RegisterDoctorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: false)
         backgroundView?.setGradientBackground()
         registerButton?.layer.cornerRadius = 8
         registerButton?.layer.masksToBounds = true
@@ -57,6 +58,10 @@ class RegisterDoctorViewController: UIViewController {
         Firebase.sharedInstance.doctor.sNombreCompleto  = nomComplDoctor?.text
         Firebase.sharedInstance.doctor.sHospTrabaj  = hospTrabjDoctor?.text
         Firebase.sharedInstance.doctor.sRegisNacTitu = regisNacdTitDoctor?.text
-        Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: "Doctor")
+        if let typeUser = userType {
+            Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser)
+            let tabBarVC = TabBarNavigationController(type: typeUser)
+            self.present(tabBarVC, animated: true, completion: nil)
+        }
     }
 }

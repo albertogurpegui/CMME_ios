@@ -81,7 +81,7 @@
                             <rect key="frame" x="138" y="658" width="138" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="NV4-M2-3Ic"/>
+                                <constraint firstAttribute="height" constant="50" id="eUU-ah-9zh"/>
                             </constraints>
                             <state key="normal" title="REGISTRARTE">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,17 +124,17 @@
                     <constraints>
                         <constraint firstItem="KfP-UU-Qkq" firstAttribute="leading" secondItem="1vZ-T9-QTA" secondAttribute="leading" constant="25" id="0zf-Ky-BnY"/>
                         <constraint firstItem="Lag-vk-dxz" firstAttribute="top" secondItem="1vZ-T9-QTA" secondAttribute="top" constant="50" id="1An-Bu-VcS"/>
+                        <constraint firstAttribute="bottom" secondItem="5MV-zU-EaX" secondAttribute="bottom" constant="8" id="AcO-mD-ntL"/>
                         <constraint firstAttribute="trailing" secondItem="Lag-vk-dxz" secondAttribute="trailing" constant="107" id="XSV-ft-emz"/>
                         <constraint firstAttribute="trailing" secondItem="vaY-Ow-Y1N" secondAttribute="trailing" constant="25" id="dMG-Kn-ucr"/>
                         <constraint firstItem="Lag-vk-dxz" firstAttribute="leading" secondItem="1vZ-T9-QTA" secondAttribute="leading" constant="107" id="hcP-Ua-uQx"/>
                         <constraint firstAttribute="trailing" secondItem="lnm-Hh-Naq" secondAttribute="trailing" constant="107" id="oEO-tr-mxf"/>
-                        <constraint firstItem="5MV-zU-EaX" firstAttribute="leading" secondItem="1vZ-T9-QTA" secondAttribute="leading" constant="138" id="paC-aO-qpJ"/>
                         <constraint firstItem="KfP-UU-Qkq" firstAttribute="top" secondItem="lnm-Hh-Naq" secondAttribute="bottom" constant="45" id="rut-mJ-MUb"/>
-                        <constraint firstAttribute="trailing" secondItem="5MV-zU-EaX" secondAttribute="trailing" constant="138" id="skc-74-aeK"/>
                         <constraint firstItem="lnm-Hh-Naq" firstAttribute="top" secondItem="Lag-vk-dxz" secondAttribute="bottom" constant="8" id="sz3-wG-1Vy"/>
                         <constraint firstItem="vaY-Ow-Y1N" firstAttribute="top" secondItem="lnm-Hh-Naq" secondAttribute="bottom" constant="45" id="uf0-5C-zKU"/>
+                        <constraint firstAttribute="trailing" secondItem="5MV-zU-EaX" secondAttribute="trailing" constant="138" id="xCq-1N-mWJ"/>
+                        <constraint firstItem="5MV-zU-EaX" firstAttribute="leading" secondItem="1vZ-T9-QTA" secondAttribute="leading" constant="138" id="zC3-pE-lWZ"/>
                         <constraint firstItem="lnm-Hh-Naq" firstAttribute="leading" secondItem="1vZ-T9-QTA" secondAttribute="leading" constant="107" id="zQs-es-h01"/>
-                        <constraint firstAttribute="bottom" secondItem="5MV-zU-EaX" secondAttribute="bottom" constant="8" id="zsB-w8-nTg"/>
                     </constraints>
                 </view>
             </subviews>
@@ -145,8 +145,6 @@
                 <constraint firstItem="1vZ-T9-QTA" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ijW-Lj-7QD"/>
                 <constraint firstItem="1vZ-T9-QTA" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="roX-2a-cNF"/>
             </constraints>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="52.173913043478265" y="48.097826086956523"/>
         </view>

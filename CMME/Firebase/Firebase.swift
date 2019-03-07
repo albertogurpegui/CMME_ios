@@ -20,17 +20,11 @@ class Firebase: NSObject {
     var firStoreDB:Firestore?
     var patient:Patient = Patient()
     var doctor:Doctor = Doctor()
-    var type: String?
+    var userType: TypeUser?
     
     func initFireBase(){
         FirebaseApp.configure()
         firStoreDB=Firestore.firestore()
-    }
-    
-    func loadData(){
-        let props = UserDefaults.standard
-        //sUsuario = props.string(forKey: "usuario_login")!
-        //sPassword = props.string(forKey: "password_login")!
     }
     
     func saveData(){
@@ -40,12 +34,12 @@ class Firebase: NSObject {
         props.synchronize()
     }
     
-    func executeLogin(sEmail:String, sContraseña:String, typeUser: String) {
+    func executeLogin(sEmail:String, sContraseña:String, typeUser: TypeUser) {
         print("Esta en data holder")
-        self.type = typeUser
-        if let typeUser = type {
+        self.userType = typeUser
+        if let typeUser = userType {
             switch typeUser {
-            case "Doctor":
+            case .doctor:
                 Auth.auth().signIn(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
                         print("Doctor logueado")
@@ -63,7 +57,7 @@ class Firebase: NSObject {
                         print("ERROR EN LOGEO ", error!)
                     }
                 }
-            case "Patient":
+            case .patient:
                 Auth.auth().signIn(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
                         print("Patient logueado")
@@ -81,17 +75,15 @@ class Firebase: NSObject {
                         print("ERROR EN LOGEO ", error!)
                     }
                 }
-            default:
-                break
             }
         }
     }
-    func executeRegister(sEmail:String, sContraseña:String, typeUser: String) {
+    func executeRegister(sEmail:String, sContraseña:String, typeUser: TypeUser) {
         print("Esta en data holder")
-        self.type = typeUser
-        if let typeUser = type {
+        self.userType = typeUser
+        if let typeUser = userType {
             switch typeUser {
-            case "Doctor":
+            case .doctor:
                 Auth.auth().createUser(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
                     Firebase.sharedInstance.firStoreDB?.collection("Doctores").document((user?.user.uid)!).setData(Firebase.sharedInstance.doctor.getMap())
@@ -102,7 +94,7 @@ class Firebase: NSObject {
                         print("ERROR EN LOGEO ", error!)
                     }
                 }
-            case "Patient":
+            case .patient:
                 Auth.auth().createUser(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
                     Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document((user?.user.uid)!).setData(Firebase.sharedInstance.patient.getMap())
@@ -113,8 +105,6 @@ class Firebase: NSObject {
                         print("ERROR EN LOGEO ", error!)
                     }
                 }
-            default:
-                break
             }
         }
     }

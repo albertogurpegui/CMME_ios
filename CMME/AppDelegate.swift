@@ -22,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             let mainVC = MainViewController(type: false)
-            mainNavigationController = UINavigationController.init(rootViewController: mainVC)
-            //let registerVC = RegisterTypeViewController()
+            mainNavigationController = UINavigationController(rootViewController: mainVC)
+            mainNavigationController.setNavigationBarHidden(true, animated: false)
+            //let tabBarVC = TabBarNavigationController(typeUser: "Patient")
             window.rootViewController = mainNavigationController
             window.makeKeyAndVisible()
         }
