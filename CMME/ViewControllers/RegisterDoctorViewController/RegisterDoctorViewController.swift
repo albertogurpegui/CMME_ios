@@ -60,8 +60,8 @@ class RegisterDoctorViewController: UIViewController {
         Firebase.sharedInstance.doctor.sRegisNacTitu = regisNacdTitDoctor?.text
         if let typeUser = userType {
             Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser)
-            let tabBarVC = TabBarNavigationController(type: typeUser)
-            self.present(tabBarVC, animated: true, completion: nil)
+            /*let tabBarVC = TabBarNavigationController(type: typeUser)
+            self.present(tabBarVC, animated: true, completion: nil)*/
         }
     }
 }

@@ -58,13 +58,17 @@ class LoginViewController: UIViewController {
             case .doctor:
                 Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser)
                 let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController")
+                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                controller.email = sEmail
+                ContainerNavigationController.userType = .doctor
                 //let tabBarVC = TabBarNavigationController(type:typeUser)
                 self.present(controller, animated: true, completion: nil)
             case .patient:
                 Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser)
                 let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController")
+                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                controller.email = sEmail
+                ContainerNavigationController.userType = .patient
                 //let tabBarVC = TabBarNavigationController(type:typeUser)
                 self.present(controller, animated: true, completion: nil)
             }

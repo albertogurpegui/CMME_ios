@@ -9,6 +9,10 @@
 import UIKit
 
 class MeetingCell: UITableViewCell {
+    
+    @IBOutlet weak var meetingDoctor: UILabel?
+    @IBOutlet weak var meetingPatient: UILabel?
+    @IBOutlet weak var meetingDescription: UILabel?
 
     override func awakeFromNib() {
         super.awakeFromNib()

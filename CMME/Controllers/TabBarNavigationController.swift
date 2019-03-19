@@ -15,14 +15,13 @@ class TabBarNavigationController: UITabBarController {
     private var firstTabNavigationController : UINavigationController!
     private var secondTabNavigationControoller : UINavigationController!
     private var thirdTabNavigationController : UINavigationController!
-    var userType: TypeUser?
     
     @IBAction func clickSignOut() {
         NotificationCenter.default.post(name: NSNotification.Name("signOut"), object: nil )
     }
     
-    init(type: TypeUser){
-        self.userType = type
+    init(){
+        //self.userType = type
         super.init(nibName: "TabBarNavigationController", bundle: nil)
     }
     
@@ -35,13 +34,15 @@ class TabBarNavigationController: UITabBarController {
     }
     
     func makeTabBar() {
-        if let typeUser = userType {
+        if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
             case .doctor:
                 let meetingVC = MeetingViewController()
                 let prescriptionVC = PrescriptionViewController()
                 let patientsVC = PatientsViewController()
-                
+                let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
+         
+                self.navigationItem.leftBarButtonItem = addButtonItem
                 meetingVC.tabBarItem.title = "Citas"
                 meetingVC.tabBarItem.image = UIImage(named: "Meeting")
                 prescriptionVC.tabBarItem.title = "Recetas"
@@ -57,7 +58,9 @@ class TabBarNavigationController: UITabBarController {
                 let meetingVC = MeetingViewController()
                 let prescriptionVC = PrescriptionViewController()
                 let hospitalsVC = HospitalsViewController()
-                
+                let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
+         
+                self.navigationItem.leftBarButtonItem = addButtonItem
                 meetingVC.tabBarItem.title = "Citas"
                 meetingVC.tabBarItem.image = UIImage(named: "Meeting")
                 prescriptionVC.tabBarItem.title = "Recetas"

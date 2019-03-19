@@ -64,8 +64,8 @@ class RegisterPatientViewController: UIViewController {
         Firebase.sharedInstance.patient.sTlfContact = numContPatient?.text
         if let typeUser = userType {
            Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser)
-            let tabBarVC = TabBarNavigationController(type: typeUser)
-            self.present(tabBarVC, animated: true, completion: nil)
+            /*let tabBarVC = TabBarNavigationController(type: typeUser)
+            self.present(tabBarVC, animated: true, completion: nil)*/
         }
     }
 }
