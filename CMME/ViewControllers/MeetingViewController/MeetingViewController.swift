@@ -11,6 +11,8 @@ import UIKit
 class MeetingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    var arrMeetings: [Meeting] = []
+    
     
     init(){
         super.init(nibName: "MeetingViewController", bundle: nil)
@@ -23,13 +25,12 @@ class MeetingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
+        self.view.setGradientBackground()
+        Firebase.sharedInstance.getUserMeetings(completion: { (meetings) in
+            self.arrMeetings = meetings
+            self.tableView.reloadData()
+        })
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        getData()
-    }
-    
     
     internal func registerCell(){
         let identifier = "MeetingCell"
@@ -64,11 +65,6 @@ class MeetingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func getData() {
-        Firebase.sharedInstance.getUserMeetings()
-        tableView.reloadData()
-    }
 }
 extension MeetingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,7 +72,7 @@ extension MeetingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180.0
+        return 220.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

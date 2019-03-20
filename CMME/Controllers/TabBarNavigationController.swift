@@ -11,10 +11,10 @@ import UIKit
 class TabBarNavigationController: UITabBarController {
     
     @IBOutlet weak var signOutButton: UIBarButtonItem?
-    
-    private var firstTabNavigationController : UINavigationController!
-    private var secondTabNavigationControoller : UINavigationController!
-    private var thirdTabNavigationController : UINavigationController!
+    let meetingVC = MeetingViewController()
+    let prescriptionVC = PrescriptionViewController()
+    let patientsVC = PatientsViewController()
+    let hospitalsVC = HospitalsViewController()
     
     @IBAction func clickSignOut() {
         NotificationCenter.default.post(name: NSNotification.Name("signOut"), object: nil )
@@ -37,16 +37,14 @@ class TabBarNavigationController: UITabBarController {
         if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
             case .doctor:
-                let meetingVC = MeetingViewController()
-                let prescriptionVC = PrescriptionViewController()
-                let patientsVC = PatientsViewController()
+                
                 let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
          
                 self.navigationItem.leftBarButtonItem = addButtonItem
                 meetingVC.tabBarItem.title = "Citas"
                 meetingVC.tabBarItem.image = UIImage(named: "Meeting")
                 prescriptionVC.tabBarItem.title = "Recetas"
-                prescriptionVC.tabBarItem.image = UIImage(named: "")
+                prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 patientsVC.tabBarItem.title = "Pacientes"
                 patientsVC.tabBarItem.image = UIImage(named: "")
                 
@@ -55,16 +53,14 @@ class TabBarNavigationController: UITabBarController {
                                         patientsVC]
                 
             case .patient:
-                let meetingVC = MeetingViewController()
-                let prescriptionVC = PrescriptionViewController()
-                let hospitalsVC = HospitalsViewController()
+                
                 let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
          
                 self.navigationItem.leftBarButtonItem = addButtonItem
                 meetingVC.tabBarItem.title = "Citas"
                 meetingVC.tabBarItem.image = UIImage(named: "Meeting")
                 prescriptionVC.tabBarItem.title = "Recetas"
-                prescriptionVC.tabBarItem.image = UIImage(named: "")
+                prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 hospitalsVC.tabBarItem.title = "Hospitales"
                 hospitalsVC.tabBarItem.image = UIImage(named: "")
                 

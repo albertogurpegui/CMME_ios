@@ -56,21 +56,27 @@ class LoginViewController: UIViewController {
         if let typeUser = userType {
             switch typeUser {
             case .doctor:
-                Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser)
-                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
-                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
-                controller.email = sEmail
-                ContainerNavigationController.userType = .doctor
-                //let tabBarVC = TabBarNavigationController(type:typeUser)
-                self.present(controller, animated: true, completion: nil)
+                self.showSpinner(onView: self.view)
+                Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                    let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                    let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                    controller.email = self.sEmail
+                    ContainerNavigationController.userType = .doctor
+                    //let tabBarVC = TabBarNavigationController(type:typeUser)
+                    self.present(controller, animated: true, completion: nil)
+                    self.removeSpinner()
+                })
             case .patient:
-                Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser)
-                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
-                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
-                controller.email = sEmail
-                ContainerNavigationController.userType = .patient
-                //let tabBarVC = TabBarNavigationController(type:typeUser)
-                self.present(controller, animated: true, completion: nil)
+                self.showSpinner(onView: self.view)
+                Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                    let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                    let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                    controller.email = self.sEmail
+                    ContainerNavigationController.userType = .patient
+                    //let tabBarVC = TabBarNavigationController(type:typeUser)
+                    self.present(controller, animated: true, completion: nil)
+                    self.removeSpinner()
+                })
             }
         }
     }
