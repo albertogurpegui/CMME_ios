@@ -12,5 +12,6 @@ class PrescriptionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setGradientBackground()
     }
 }

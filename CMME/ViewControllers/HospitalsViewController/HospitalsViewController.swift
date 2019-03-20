@@ -12,5 +12,6 @@ class HospitalsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.setGradientBackground()
     }
 }

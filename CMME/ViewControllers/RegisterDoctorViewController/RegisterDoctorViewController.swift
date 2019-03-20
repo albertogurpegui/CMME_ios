@@ -59,9 +59,16 @@ class RegisterDoctorViewController: UIViewController {
         Firebase.sharedInstance.doctor.sHospTrabaj  = hospTrabjDoctor?.text
         Firebase.sharedInstance.doctor.sRegisNacTitu = regisNacdTitDoctor?.text
         if let typeUser = userType {
-            Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser)
-            let tabBarVC = TabBarNavigationController(type: typeUser)
-            self.present(tabBarVC, animated: true, completion: nil)
+            self.showSpinner(onView: self.view)
+            Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                controller.email = self.sGmail
+                ContainerNavigationController.userType = .doctor
+                //let tabBarVC = TabBarNavigationController(type:typeUser)
+                self.present(controller, animated: true, completion: nil)
+                self.removeSpinner()
+            })
         }
     }
 }

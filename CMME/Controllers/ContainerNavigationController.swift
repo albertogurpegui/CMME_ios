@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 
 class ContainerNavigationController: UIViewController {
-    var type: String?
+    var email: String?
+    static var userType: TypeUser?
     
     init() {
         super.init(nibName: "ContainerNavigationController", bundle: nil)
@@ -20,9 +21,10 @@ class ContainerNavigationController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    /*override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if Auth.auth().currentUser != nil {
+        self.title = email
+        /*if Auth.auth().currentUser != nil {
             self.performSegue(withIdentifier: "ContainerNavigationController", sender: nil)
         }else{
             var mainNavigationController : UINavigationController!
@@ -30,8 +32,8 @@ class ContainerNavigationController: UIViewController {
             mainNavigationController = UINavigationController(rootViewController: mainVC)
             mainNavigationController.setNavigationBarHidden(true, animated: false)
             self.present(mainVC, animated: false, completion: nil)
-        }
-    }*/
+        }*/
+    }
     
     override func viewDidLoad() {
         setListeners()

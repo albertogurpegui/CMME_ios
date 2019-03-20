@@ -9,9 +9,17 @@
 import UIKit
 
 class MeetingCell: UITableViewCell {
+    
+    @IBOutlet weak var meetingView: UIView?
+    @IBOutlet weak var meetingDoctor: UILabel?
+    @IBOutlet weak var meetingPatient: UILabel?
+    @IBOutlet weak var meetingDescription: UILabel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        meetingView?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        meetingView?.layer.cornerRadius = 25
+        meetingView?.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
