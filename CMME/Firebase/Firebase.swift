@@ -147,7 +147,7 @@ class Firebase: NSObject {
             switch typeUser {
             case .doctor:
                 if let userADR = user {
-                    listenerMeeting =  (Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.user.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
+                    listenerMeeting =  (Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.user.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
                         if let documents = querySnapshot?.documents {
                             Firebase.sharedInstance.arrMeeting = []
                             for document in documents {
@@ -167,19 +167,6 @@ class Firebase: NSObject {
                         }
                         })!
                 }
-                /*if let userADR = user {
-                    let ruta = Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.user.uid).collection("Citas")
-                    ruta?.getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                
-                                print("\(document.documentID) => \(document.data())")
-                            }
-                        }
-                    }
-                }*/
             case .patient:
                 if let userADR = user {
                     listenerMeeting = (Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.user.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
@@ -202,31 +189,42 @@ class Firebase: NSObject {
                         }
                         })!
                 }
-                /*if let userADR = user {
-                    let ruta = Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.user.uid).collection("Citas")
-                    ruta?.getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            Firebase.sharedInstance.arrMeeting = []
-                            for document in querySnapshot!.documents {
-                                let value = document.data()
-                                let descMeeting = value["Descripcion Cita"] as? String ?? ""
-                                let nameDocMeeting = value["Nombre Doctor Completo"] as? String ?? ""
-                                let namePatMeeting = value["Nombre Paciente Completo"] as? String ?? ""
-                                let meeting = Meeting()
-                                meeting.sNombreDoctorCompleto = nameDocMeeting
-                                meeting.sNombrePacienteCompleto = namePatMeeting
-                                meeting.sDescripcionCita = descMeeting
-                                Firebase.sharedInstance.arrMeeting.append(meeting)
-                                
-                                print("\(document.documentID) => \(document.data())")
-                            }
-                        }
-                    }
-                }*/
             }
         }
         return listenerMeeting
+    }
+    
+    func getNameDoctorsOrPatients(completion:@escaping ([String])->Void) {
+        var arrNameDorP: [String] = []
+        if let typeUser = ContainerNavigationController.userType {
+            switch typeUser {
+            case .doctor:
+                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in
+                    if let documents = querySnapshot?.documents {
+                        for document in documents {
+                            let value = document.data()
+                            let namePatMeeting = value["Nombre Completo"] as? String ?? ""
+                            arrNameDorP.append(namePatMeeting)
+                                
+                            print("\(document.documentID) => \(document.data())")
+                        }
+                        completion(arrNameDorP)
+                    }
+                }
+            case .patient:
+                Firebase.sharedInstance.firStoreDB?.collection("Doctores").addSnapshotListener { querySnapshot, error in
+                    if let documents = querySnapshot?.documents {
+                        for document in documents {
+                            let value = document.data()
+                            let nameDocMeeting = value["Nombre Completo"] as? String ?? ""
+                            arrNameDorP.append(nameDocMeeting)
+                            
+                            print("\(document.documentID) => \(document.data())")
+                        }
+                        completion(arrNameDorP)
+                    }
+                }
+            }
+        }
     }
 }

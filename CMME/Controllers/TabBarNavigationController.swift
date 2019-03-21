@@ -33,19 +33,40 @@ class TabBarNavigationController: UITabBarController {
         makeTabBar()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+        case 1:
+            let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
+            
+            self.navigationItem.leftBarButtonItem = addButtonItem
+        case 2:
+            let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: prescriptionVC, action: #selector(prescriptionVC.addPressed))
+            
+            self.navigationItem.leftBarButtonItem = addButtonItem
+        case 3:
+            self.navigationItem.leftBarButtonItem = nil
+        case 4:
+            self.navigationItem.leftBarButtonItem = nil
+        default:
+            break
+        }
+    }
+    
     func makeTabBar() {
         if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
             case .doctor:
-                
                 let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
-         
+                
                 self.navigationItem.leftBarButtonItem = addButtonItem
                 meetingVC.tabBarItem.title = "Citas"
+                meetingVC.tabBarItem.tag = 1
                 meetingVC.tabBarItem.image = UIImage(named: "Meeting")
                 prescriptionVC.tabBarItem.title = "Recetas"
+                prescriptionVC.tabBarItem.tag = 2
                 prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 patientsVC.tabBarItem.title = "Pacientes"
+                patientsVC.tabBarItem.tag = 3
                 patientsVC.tabBarItem.image = UIImage(named: "")
                 
                 self.viewControllers = [meetingVC,
@@ -53,15 +74,17 @@ class TabBarNavigationController: UITabBarController {
                                         patientsVC]
                 
             case .patient:
-                
                 let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
-         
+                
                 self.navigationItem.leftBarButtonItem = addButtonItem
                 meetingVC.tabBarItem.title = "Citas"
+                meetingVC.tabBarItem.tag = 1
                 meetingVC.tabBarItem.image = UIImage(named: "Meeting")
                 prescriptionVC.tabBarItem.title = "Recetas"
+                prescriptionVC.tabBarItem.tag = 2
                 prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 hospitalsVC.tabBarItem.title = "Hospitales"
+                hospitalsVC.tabBarItem.tag = 4
                 hospitalsVC.tabBarItem.image = UIImage(named: "")
                 
                 self.viewControllers = [meetingVC,

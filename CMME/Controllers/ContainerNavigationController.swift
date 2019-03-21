@@ -12,6 +12,7 @@ import Firebase
 class ContainerNavigationController: UIViewController {
     var email: String?
     static var userType: TypeUser?
+    private var mainNavigationController : UINavigationController!
     
     init() {
         super.init(nibName: "ContainerNavigationController", bundle: nil)
@@ -46,8 +47,9 @@ class ContainerNavigationController: UIViewController {
     @objc internal func signOut() {
         try! Auth.auth().signOut()
         let mainVC = MainViewController(type: false)
-        //self.performSegue(withIdentifier: "MainViewController", sender: self)
-        self.present(mainVC, animated: true, completion: nil)
-        //self.dismiss(animated: false, completion: nil)
+        //navigationController?.pushViewController(mainVC, animated: true)
+        self.present(UINavigationController(rootViewController: mainVC),
+                     animated: true,
+                     completion: nil)
     }
 }
