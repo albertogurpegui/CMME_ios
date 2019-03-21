@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         mainViewControllerDesign()
         tapInUIViews()
+        navigationItem.hidesBackButton = true
         if let type = regitro {
             buttonRegister?.isHidden = type
         }

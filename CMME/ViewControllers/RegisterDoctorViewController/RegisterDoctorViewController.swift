@@ -66,8 +66,8 @@ class RegisterDoctorViewController: UIViewController {
                 controller.email = self.sGmail
                 ContainerNavigationController.userType = .doctor
                 //let tabBarVC = TabBarNavigationController(type:typeUser)
-                self.present(controller, animated: true, completion: nil)
                 self.removeSpinner()
+                self.present(controller, animated: true, completion: nil)
             })
         }
     }

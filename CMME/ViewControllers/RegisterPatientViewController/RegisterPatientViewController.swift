@@ -70,8 +70,8 @@ class RegisterPatientViewController: UIViewController {
                 controller.email = self.sGmail
                 ContainerNavigationController.userType = .patient
                 //let tabBarVC = TabBarNavigationController(type:typeUser)
-                self.present(controller, animated: true, completion: nil)
                 self.removeSpinner()
+                self.present(controller, animated: true, completion: nil)
             })
         }
     }

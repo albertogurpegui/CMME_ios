@@ -17,8 +17,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView?
     @IBOutlet weak var loginButton: UIButton?
     
-    private var sEmail = "alberto.gurpegui@gmail.com"
-    private var sContraseña = "123456789"
+    private var sEmail = ""
+    private var sContraseña = ""
+    /*private var sEmail = "alberto.gurpegui@gmail.com"
+    private var sContraseña = "123456789"*/
     private var userType: TypeUser?
 
     
@@ -47,12 +49,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func executeLogin() {
         print("Esta en data holder")
-        /*if let gmail = gmailUser?.text{
+        if let gmail = gmailUser?.text{
             sEmail = gmail
         }
         if let contrasenna = contrasennaUser?.text {
             sContraseña = contrasenna
-        }*/
+        }
         if let typeUser = userType {
             switch typeUser {
             case .doctor:
@@ -63,8 +65,8 @@ class LoginViewController: UIViewController {
                     controller.email = self.sEmail
                     ContainerNavigationController.userType = .doctor
                     //let tabBarVC = TabBarNavigationController(type:typeUser)
-                    self.present(controller, animated: true, completion: nil)
                     self.removeSpinner()
+                    self.present(controller, animated: true, completion: nil)
                 })
             case .patient:
                 self.showSpinner(onView: self.view)
@@ -74,8 +76,8 @@ class LoginViewController: UIViewController {
                     controller.email = self.sEmail
                     ContainerNavigationController.userType = .patient
                     //let tabBarVC = TabBarNavigationController(type:typeUser)
-                    self.present(controller, animated: true, completion: nil)
                     self.removeSpinner()
+                    self.present(controller, animated: true, completion: nil)
                 })
             }
         }
