@@ -42,6 +42,8 @@
 		16FA04E0221E8F9A00F1D933 /* CMMETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04DF221E8F9A00F1D933 /* CMMETests.swift */; };
 		16FA04EB221E8F9A00F1D933 /* CMMEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04EA221E8F9A00F1D933 /* CMMEUITests.swift */; };
 		16FDA3EB22423C9F0033524D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDA3EA22423C9F0033524D /* UIViewControllerExtension.swift */; };
+		16FDA3EF22425FA30033524D /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDA3ED22425FA30033524D /* EmptyCell.swift */; };
+		16FDA3F022425FA30033524D /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDA3EE22425FA30033524D /* EmptyCell.xib */; };
 		16FDE1E922317C9000E5A400 /* TypeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDE1E822317C9000E5A400 /* TypeUser.swift */; };
 		1D6F87B740B14B3BA8F5911B /* Pods_CMME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0679097ED5FA0B91AAB28277 /* Pods_CMME.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +108,8 @@
 		16FA04EA221E8F9A00F1D933 /* CMMEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMEUITests.swift; sourceTree = "<group>"; };
 		16FA04EC221E8F9A00F1D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16FDA3EA22423C9F0033524D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		16FDA3ED22425FA30033524D /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
+		16FDA3EE22425FA30033524D /* EmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
 		16FDE1E822317C9000E5A400 /* TypeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeUser.swift; sourceTree = "<group>"; };
 		65736D413B8D6E365CE483CA /* Pods_CMMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D9F8058FF6F7920FFC8F3B /* Pods_CMMETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMMETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 		1600EFA5222F08E0009C962C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				16FDA3EC22425F7D0033524D /* EmptyCell */,
 				1600EFAA222F09AB009C962C /* MeetingCell */,
 			);
 			path = Cells;
@@ -357,6 +362,15 @@
 			path = CMMEUITests;
 			sourceTree = "<group>";
 		};
+		16FDA3EC22425F7D0033524D /* EmptyCell */ = {
+			isa = PBXGroup;
+			children = (
+				16FDA3ED22425FA30033524D /* EmptyCell.swift */,
+				16FDA3EE22425FA30033524D /* EmptyCell.xib */,
+			);
+			path = EmptyCell;
+			sourceTree = "<group>";
+		};
 		16FDE1E722317C7200E5A400 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +515,7 @@
 				16ED3E5B2238FA9700DB8F36 /* AddMeetingViewController.xib in Resources */,
 				16A982E72223ED4500521802 /* RegisterPatientViewController.xib in Resources */,
 				16024A34222546E1006F047E /* HospitalsViewController.xib in Resources */,
+				16FDA3F022425FA30033524D /* EmptyCell.xib in Resources */,
 				1620AA84221FFB1A00346BEF /* GoogleService-Info.plist in Resources */,
 				16024A3922254726006F047E /* PatientsViewController.xib in Resources */,
 				16A982E22223D9BF00521802 /* Assets.xcassets in Resources */,
@@ -606,6 +621,7 @@
 				162BD0B2221EC9EE00C1BBE4 /* Patient.swift in Sources */,
 				16FA04CB221E8F9800F1D933 /* AppDelegate.swift in Sources */,
 				1620AA87222007D800346BEF /* UIViewExtension.swift in Sources */,
+				16FDA3EF22425FA30033524D /* EmptyCell.swift in Sources */,
 				162BD0AA221E9C0B00C1BBE4 /* MainViewController.swift in Sources */,
 				16024A2422252F40006F047E /* MeetingViewController.swift in Sources */,
 				16A982E62223ED4500521802 /* RegisterPatientViewController.swift in Sources */,

@@ -51,13 +51,15 @@ class MeetingViewController: UIViewController {
                 addVC.delegate = self
                 addVC.modalTransitionStyle = .coverVertical
                 addVC.modalPresentationStyle = .overCurrentContext
-                present(addVC,animated: true,completion: nil)
+                navigationController?.pushViewController(addVC, animated: true)
+                //present(addVC,animated: true,completion: nil)
             case .patient:
                 let addVC = AddMeetingViewController()
                 addVC.delegate = self
                 addVC.modalTransitionStyle = .coverVertical
                 addVC.modalPresentationStyle = .overCurrentContext
-                present(addVC,animated: true,completion: nil)
+                navigationController?.pushViewController(addVC, animated: true)
+                //present(addVC,animated: true,completion: nil)
             }
         }
     }
@@ -89,9 +91,8 @@ extension MeetingViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MeetingViewController: AddMeetingViewControllerDelegate{
     func addMeetingViewController(_ vc: AddMeetingViewController, didEditMeeting meeting: Meeting) {
-        vc.dismiss(animated: true){
-            self.tableView.reloadData()
-        }
+        navigationController?.popViewController(animated: true)
+        self.tableView.reloadData()
     }
     
     func errorAddMeetingViewController(_ vc: AddMeetingViewController) {
