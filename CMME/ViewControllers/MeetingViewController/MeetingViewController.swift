@@ -33,9 +33,12 @@ class MeetingViewController: UIViewController {
     }
     
     internal func registerCell(){
-        let identifier = "MeetingCell"
+        let identifier = "EmptyCell"
         let cellNib = UINib(nibName: identifier, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: identifier)
+        let identifier2 = "MeetingCell"
+        let cellNib2 = UINib(nibName: identifier2, bundle: nil)
+        tableView.register(cellNib2, forCellReuseIdentifier: identifier2)
     }
     
     internal func createButtonAdd(){
@@ -70,29 +73,63 @@ class MeetingViewController: UIViewController {
 }
 extension MeetingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Firebase.sharedInstance.arrMeeting.count
+        if Firebase.sharedInstance.arrMeeting.count == 0 {
+            return 1
+        }else {
+            return Firebase.sharedInstance.arrMeeting.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220.0
+        if Firebase.sharedInstance.arrMeeting.count == 0 {
+            return 95.0
+        }else {
+            return 220.0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MeetingCell = tableView.dequeueReusableCell(withIdentifier: "MeetingCell", for: indexPath) as! MeetingCell
-        let meeting = Firebase.sharedInstance.arrMeeting[indexPath.row]
-        cell.meetingDoctor?.text = meeting.sNombreDoctorCompleto
-        cell.meetingPatient?.text = meeting.sNombrePacienteCompleto
-        cell.meetingDescription?.text = meeting.sDescripcionCita
-        return cell
+        if Firebase.sharedInstance.arrMeeting.count == 0 {
+            let cell: EmptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath) as! EmptyCell
+            cell.emptyText?.text = "No hay citas medicas que puedas ver, pincha en el boton '+' para solicitar una cita"
+            return cell
+        }else {
+            let cell: MeetingCell = tableView.dequeueReusableCell(withIdentifier: "MeetingCell", for: indexPath) as! MeetingCell
+            let meeting = Firebase.sharedInstance.arrMeeting[indexPath.row]
+            cell.meetingDoctor?.text = meeting.sNombreDoctorCompleto
+            cell.meetingPatient?.text = meeting.sNombrePacienteCompleto
+            cell.meetingDescription?.text = meeting.sDescripcionCita
+            cell.meetingConsultation?.text = meeting.sSalaCita
+            cell.meetingDate?.text = meeting.sFechaCita
+            return cell
+        }
     }
     
-    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            Firebase.sharedInstance.arrMeeting.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            tableView.reloadData()
+        }
+    }
 }
 
-extension MeetingViewController: AddMeetingViewControllerDelegate{
+extension MeetingViewController: AddMeetingViewControllerDelegate {
     func addMeetingViewController(_ vc: AddMeetingViewController, didEditMeeting meeting: Meeting) {
         navigationController?.popViewController(animated: true)
         self.tableView.reloadData()
+        switch ContainerNavigationController.userType {
+        case .doctor?:
+            if let completeName =  Firebase.sharedInstance.doctor.sNombreCompleto{
+                self.addNotification(nameOfCreator: completeName)
+            }
+        case .patient?:
+            if let completeName =  Firebase.sharedInstance.patient.sNombreCompleto{
+                self.addNotification(nameOfCreator: completeName)
+            }
+        case .none:
+            break
+        }
     }
     
     func errorAddMeetingViewController(_ vc: AddMeetingViewController) {

@@ -48,27 +48,35 @@ class RegisterDoctorViewController: UIViewController {
     }
     
     @IBAction func executeRegister() {
-        if let gmail = gmailDoctor?.text {
-            sGmail = gmail
-        }
-        if let contrasenna = contrasennaDoctor?.text {
-            sContraseña = contrasenna
-        }
-        Firebase.sharedInstance.doctor.sGmail = gmailDoctor?.text
-        Firebase.sharedInstance.doctor.sNombreCompleto  = nomComplDoctor?.text
-        Firebase.sharedInstance.doctor.sHospTrabaj  = hospTrabjDoctor?.text
-        Firebase.sharedInstance.doctor.sRegisNacTitu = regisNacdTitDoctor?.text
-        if let typeUser = userType {
-            self.showSpinner(onView: self.view)
-            Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
-                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
-                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
-                controller.email = self.sGmail
-                ContainerNavigationController.userType = .doctor
-                //let tabBarVC = TabBarNavigationController(type:typeUser)
-                self.removeSpinner()
-                self.present(controller, animated: true, completion: nil)
-            })
+        if ((nomComplDoctor?.text?.elementsEqual(""))!) || ((contrasennaDoctor?.text?.elementsEqual(""))!) || ((gmailDoctor?.text?.elementsEqual(""))!) ||
+            ((hospTrabjDoctor?.text?.elementsEqual(""))!) ||
+            ((regisNacdTitDoctor?.text?.elementsEqual(""))!) {
+            let alert = UIAlertController(title: "ERROR", message: "Esta erroneo o vacio algun campo", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            if let gmail = gmailDoctor?.text {
+                sGmail = gmail
+            }
+            if let contrasenna = contrasennaDoctor?.text {
+                sContraseña = contrasenna
+            }
+            Firebase.sharedInstance.doctor.sGmail = gmailDoctor?.text
+            Firebase.sharedInstance.doctor.sNombreCompleto  = nomComplDoctor?.text
+            Firebase.sharedInstance.doctor.sHospTrabaj  = hospTrabjDoctor?.text
+            Firebase.sharedInstance.doctor.sRegisNacTitu = regisNacdTitDoctor?.text
+            if let typeUser = userType {
+                self.showSpinner(onView: self.view)
+                Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                    let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                    let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                    controller.email = self.sGmail
+                    ContainerNavigationController.userType = .doctor
+                    //let tabBarVC = TabBarNavigationController(type:typeUser)
+                    self.removeSpinner()
+                    self.present(controller, animated: true, completion: nil)
+                })
+            }
         }
     }
 }

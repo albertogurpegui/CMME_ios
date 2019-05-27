@@ -8,4 +8,8 @@ target 'CMME' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'SwiftMessages'
+  pod 'lottie-ios'
+  pod 'MessageKit'
+  pod 'MessageInputBar'
 end

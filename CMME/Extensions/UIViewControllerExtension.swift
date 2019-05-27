@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 var vSpinner : UIView?
 
@@ -31,6 +32,27 @@ extension UIViewController {
         DispatchQueue.main.async {
             vSpinner?.removeFromSuperview()
             vSpinner = nil
+        }
+    }
+    
+    func addNotification(nameOfCreator: String) {
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = nameOfCreator + " ha creado una nueva cita"
+        content.body = "Entra en la aplicacion, hay una nueva cita creada en tu cuenta"
+        content.badge = 1
+        content.sound = UNNotificationSound.default
+                
+        let date = Date(timeIntervalSinceNow: 5)
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: "CMME", content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            if error != nil {
+                print(error as Any)
+            }
         }
     }
 }

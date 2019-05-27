@@ -15,6 +15,7 @@ class TabBarNavigationController: UITabBarController {
     let prescriptionVC = PrescriptionViewController()
     let patientsVC = PatientsViewController()
     let hospitalsVC = HospitalsViewController()
+    let chatsVC = ChatViewController()
     
     @IBAction func clickSignOut() {
         NotificationCenter.default.post(name: NSNotification.Name("signOut"), object: nil )
@@ -40,13 +41,21 @@ class TabBarNavigationController: UITabBarController {
             
             self.navigationItem.leftBarButtonItem = addButtonItem
         case 2:
-            let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: prescriptionVC, action: #selector(prescriptionVC.addPressed))
-            
-            self.navigationItem.leftBarButtonItem = addButtonItem
+            if let typeUser = ContainerNavigationController.userType {
+                switch typeUser {
+                case .doctor:
+                    let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: prescriptionVC, action: #selector(prescriptionVC.addPressed))
+                    
+                    self.navigationItem.leftBarButtonItem = addButtonItem
+                case .patient:
+                    self.navigationItem.leftBarButtonItem = nil
+                }
+            }
         case 3:
             self.navigationItem.leftBarButtonItem = nil
         case 4:
             self.navigationItem.leftBarButtonItem = nil
+            self.tabBar.isHidden = true
         default:
             break
         }
@@ -67,11 +76,15 @@ class TabBarNavigationController: UITabBarController {
                 prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 patientsVC.tabBarItem.title = "Pacientes"
                 patientsVC.tabBarItem.tag = 3
-                patientsVC.tabBarItem.image = UIImage(named: "")
+                patientsVC.tabBarItem.image = UIImage(named: "Cast")
+                chatsVC.tabBarItem.title = "Chats"
+                chatsVC.tabBarItem.tag = 4
+                chatsVC.tabBarItem.image = UIImage(named: "")
                 
                 self.viewControllers = [meetingVC,
                                         prescriptionVC,
-                                        patientsVC]
+                                        patientsVC,
+                                        chatsVC]
                 
             case .patient:
                 let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
@@ -84,12 +97,16 @@ class TabBarNavigationController: UITabBarController {
                 prescriptionVC.tabBarItem.tag = 2
                 prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 hospitalsVC.tabBarItem.title = "Hospitales"
-                hospitalsVC.tabBarItem.tag = 4
-                hospitalsVC.tabBarItem.image = UIImage(named: "")
+                hospitalsVC.tabBarItem.tag = 3
+                hospitalsVC.tabBarItem.image = UIImage(named: "Hospital")
+                chatsVC.tabBarItem.title = "Chats"
+                chatsVC.tabBarItem.tag = 4
+                chatsVC.tabBarItem.image = UIImage(named: "")
                 
                 self.viewControllers = [meetingVC,
                                         prescriptionVC,
-                                        hospitalsVC]
+                                        hospitalsVC,
+                                        chatsVC]
             }
         }
     }

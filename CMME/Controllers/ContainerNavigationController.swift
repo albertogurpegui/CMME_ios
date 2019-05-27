@@ -22,21 +22,8 @@ class ContainerNavigationController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.title = email
-        /*if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "ContainerNavigationController", sender: nil)
-        }else{
-            var mainNavigationController : UINavigationController!
-            let mainVC = MainViewController(type: false)
-            mainNavigationController = UINavigationController(rootViewController: mainVC)
-            mainNavigationController.setNavigationBarHidden(true, animated: false)
-            self.present(mainVC, animated: false, completion: nil)
-        }*/
-    }
-    
     override func viewDidLoad() {
+        super.viewDidLoad()
         setListeners()
     }
     
@@ -46,8 +33,8 @@ class ContainerNavigationController: UIViewController {
     
     @objc internal func signOut() {
         try! Auth.auth().signOut()
+        Firebase.sharedInstance.user = nil
         let mainVC = MainViewController(type: false)
-        //navigationController?.pushViewController(mainVC, animated: true)
         self.present(UINavigationController(rootViewController: mainVC),
                      animated: true,
                      completion: nil)
