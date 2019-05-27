@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     
@@ -19,17 +20,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Firebase.sharedInstance.initFireBase()
+        
+        /*let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert, .sound]) { (success, error) in
+            if error == nil {
+                print("Success")
+                self.Notifications()
+            }
+        }*/
+        let center = UNUserNotificationCenter.current()
+        
+        let options: UNAuthorizationOptions = [.sound, .alert]
+        
+        center.requestAuthorization(options: options) { (granted, error) in
+            if error != nil {
+                print(error as Any)
+            }
+        }
+        
+        center.delegate = self
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            let mainVC = MainViewController(type: false)
-            mainNavigationController = UINavigationController(rootViewController: mainVC)
-            mainNavigationController.setNavigationBarHidden(true, animated: false)
-            //let tabBarVC = TabBarNavigationController(typeUser: "Patient")
-            window.rootViewController = mainNavigationController
-            window.makeKeyAndVisible()
+            Firebase.sharedInstance.user = Auth.auth().currentUser
+            if Auth.auth().currentUser == nil{
+                let mainVC = MainViewController(type: false)
+                mainNavigationController = UINavigationController(rootViewController: mainVC)
+                mainNavigationController.setNavigationBarHidden(true, animated: false)
+                window.rootViewController = mainNavigationController
+                window.makeKeyAndVisible()
+            }else {
+                Firebase.sharedInstance.knowTypeOfUserAutoLogging { (typeUser) in
+                    let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                    let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                    ContainerNavigationController.userType = typeUser
+                    window.rootViewController = controller
+                    window.makeKeyAndVisible()
+                }
+            }
         }
-        Firebase.sharedInstance.initFireBase()
         return true
+    }
+    
+    /*func Notifications() {
+        let content = UNMutableNotificationContent()
+        content.title = "Nueva notificacion en tu apllicacion CMME"
+        content.body = "Entra en la aplicacion, hay una novedad en tu cuenta"
+        content.badge = 1
+        content.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "CMME", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }*/
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -48,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

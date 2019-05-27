@@ -21,8 +21,10 @@ class Firebase: NSObject {
     var doctor:Doctor = Doctor()
     var meeting:Meeting = Meeting()
     var arrMeeting:[Meeting] = []
+    //var message:Message = Message()
+    var arrMessages:[Message] = []
     var userType: TypeUser?
-    var user: AuthDataResult?
+    var user: User?
     
     func initFireBase(){
         FirebaseApp.configure()
@@ -36,7 +38,7 @@ class Firebase: NSObject {
         props.synchronize()
     }
     
-    func executeLogin(sEmail:String, sContraseña:String, typeUser: TypeUser, completion:@escaping (AuthDataResult)->Void) {
+    func executeLogin(sEmail:String, sContraseña:String, typeUser: TypeUser, completion:@escaping (User)->Void) {
         print("Esta en data holder")
         self.userType = typeUser
         if let typeUser = userType {
@@ -44,7 +46,7 @@ class Firebase: NSObject {
             case .doctor:
                 Auth.auth().signIn(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
-                        Firebase.sharedInstance.user = user
+                        Firebase.sharedInstance.user = Auth.auth().currentUser
                         print("Doctor logueado")
                         let ruta = Firebase.sharedInstance.firStoreDB?.collection("Doctores").document((user?.user.uid)!)
                         ruta?.getDocument{ (document, error) in
@@ -66,7 +68,7 @@ class Firebase: NSObject {
             case .patient:
                 Auth.auth().signIn(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
-                        Firebase.sharedInstance.user = user
+                        Firebase.sharedInstance.user = Auth.auth().currentUser
                         print("Patient logueado")
                         let ruta = Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document((user?.user.uid)!)
                         ruta?.getDocument{ (document, error) in
@@ -89,7 +91,7 @@ class Firebase: NSObject {
         }
     }
     
-    func executeRegister(sEmail:String, sContraseña:String, typeUser: TypeUser, completion:@escaping (AuthDataResult)->Void) {
+    func executeRegister(sEmail:String, sContraseña:String, typeUser: TypeUser, completion:@escaping (User)->Void) {
         print("Esta en data holder")
         self.userType = typeUser
         if let typeUser = userType {
@@ -97,9 +99,12 @@ class Firebase: NSObject {
             case .doctor:
                 Auth.auth().createUser(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
-                        Firebase.sharedInstance.user = user
+                        Firebase.sharedInstance.user = Auth.auth().currentUser
                     Firebase.sharedInstance.firStoreDB?.collection("Doctores").document((user?.user.uid)!).setData(Firebase.sharedInstance.doctor.getMap())
                         
+                        if let userAuthDataResult = Firebase.sharedInstance.user {
+                            completion(userAuthDataResult)
+                        }
                         print("Doctor registrado")
                     }
                     else {
@@ -109,8 +114,12 @@ class Firebase: NSObject {
             case .patient:
                 Auth.auth().createUser(withEmail: sEmail, password: sContraseña) { (user, error) in
                     if user != nil {
-                        Firebase.sharedInstance.user = user
+                        Firebase.sharedInstance.user = Auth.auth().currentUser
                     Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document((user?.user.uid)!).setData(Firebase.sharedInstance.patient.getMap())
+                        
+                        if let userAuthDataResult = Firebase.sharedInstance.user {
+                            completion(userAuthDataResult)
+                        }
                         print("Patient registrado")
                     }
                     else {
@@ -129,13 +138,39 @@ class Firebase: NSObject {
             switch typeUser {
             case .doctor:
                 if let userADR = user {
-                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.user.uid).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
-                    print("Añade cita en doctor " + userADR.user.email!)
+                Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
+                    print("Añade cita en doctor " + userADR.email!)
+                    Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in
+                        if let documents = querySnapshot?.documents {
+                            for document in documents {
+                                let value = document.data()
+                                let namePat = value["Nombre Completo"] as? String ?? ""
+                                if namePat == Firebase.sharedInstance.meeting.sNombrePacienteCompleto{
+                                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(document.documentID).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
+                                }
+                                
+                                print("\(document.documentID) => \(document.data())")
+                            }
+                        }
+                    }
                 }
             case .patient:
                 if let userADR = user {
-                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.user.uid).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
-                    print("Añade cita en paciente " + userADR.user.email!)
+                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.uid).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
+                    print("Añade cita en paciente " + userADR.email!)
+                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").addSnapshotListener { querySnapshot, error in
+                        if let documents = querySnapshot?.documents {
+                            for document in documents {
+                                let value = document.data()
+                                let namePat = value["Nombre Completo"] as? String ?? ""
+                                if namePat == Firebase.sharedInstance.meeting.sNombreDoctorCompleto{
+                                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(document.documentID).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
+                                }
+                                
+                                print("\(document.documentID) => \(document.data())")
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -147,7 +182,7 @@ class Firebase: NSObject {
             switch typeUser {
             case .doctor:
                 if let userADR = user {
-                    listenerMeeting =  (Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.user.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
+                    listenerMeeting =  (Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
                         if let documents = querySnapshot?.documents {
                             Firebase.sharedInstance.arrMeeting = []
                             for document in documents {
@@ -155,10 +190,14 @@ class Firebase: NSObject {
                                 let descMeeting = value["Descripcion Cita"] as? String ?? ""
                                 let nameDocMeeting = value["Nombre Doctor Completo"] as? String ?? ""
                                 let namePatMeeting = value["Nombre Paciente Completo"] as? String ?? ""
+                                let dateMeeting = value["Fecha Cita"] as? String ?? ""
+                                let siteMeeting = value["Sala Cita"] as? String ?? ""
                                 let meeting = Meeting()
                                 meeting.sNombreDoctorCompleto = nameDocMeeting
                                 meeting.sNombrePacienteCompleto = namePatMeeting
                                 meeting.sDescripcionCita = descMeeting
+                                meeting.sSalaCita = siteMeeting
+                                meeting.sFechaCita = dateMeeting
                                 Firebase.sharedInstance.arrMeeting.append(meeting)
                                 
                                 print("\(document.documentID) => \(document.data())")
@@ -169,7 +208,7 @@ class Firebase: NSObject {
                 }
             case .patient:
                 if let userADR = user {
-                    listenerMeeting = (Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.user.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
+                    listenerMeeting = (Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.uid).collection("Citas").addSnapshotListener { querySnapshot, error in
                         if let documents = querySnapshot?.documents {
                             Firebase.sharedInstance.arrMeeting = []
                             for document in documents {
@@ -177,10 +216,14 @@ class Firebase: NSObject {
                                 let descMeeting = value["Descripcion Cita"] as? String ?? ""
                                 let nameDocMeeting = value["Nombre Doctor Completo"] as? String ?? ""
                                 let namePatMeeting = value["Nombre Paciente Completo"] as? String ?? ""
+                                let dateMeeting = value["Fecha Cita"] as? String ?? ""
+                                let siteMeeting = value["Sala Cita"] as? String ?? ""
                                 let meeting = Meeting()
                                 meeting.sNombreDoctorCompleto = nameDocMeeting
                                 meeting.sNombrePacienteCompleto = namePatMeeting
                                 meeting.sDescripcionCita = descMeeting
+                                meeting.sSalaCita = siteMeeting
+                                meeting.sFechaCita = dateMeeting
                                 Firebase.sharedInstance.arrMeeting.append(meeting)
                                 
                                 print("\(document.documentID) => \(document.data())")
@@ -192,6 +235,35 @@ class Firebase: NSObject {
             }
         }
         return listenerMeeting
+    }
+    
+    func knowTypeOfUserAutoLogging(completion:@escaping (TypeUser)->Void) {
+        Firebase.sharedInstance.firStoreDB?.collection("Doctores").addSnapshotListener { querySnapshot, error in
+            if let documents = querySnapshot?.documents {
+                for document in documents {
+                    if document.documentID == Auth.auth().currentUser?.uid {
+                        Firebase.sharedInstance.doctor.setMap(valores:(document.data()))
+                        ContainerNavigationController.userType = .doctor
+                        if let typeUser = ContainerNavigationController.userType {
+                            completion(typeUser)
+                        }
+                    }
+                }
+            }
+        }
+        Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in
+            if let documents = querySnapshot?.documents {
+                for document in documents {
+                    if document.documentID == Auth.auth().currentUser?.uid {
+                        Firebase.sharedInstance.patient.setMap(valores:(document.data()))
+                        ContainerNavigationController.userType = .patient
+                        if let typeUser = ContainerNavigationController.userType {
+                            completion(typeUser)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func getNameDoctorsOrPatients(completion:@escaping ([String])->Void) {

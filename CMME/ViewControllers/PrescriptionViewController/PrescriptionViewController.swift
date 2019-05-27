@@ -41,6 +41,10 @@ extension PrescriptionViewController: UITableViewDelegate, UITableViewDataSource
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: EmptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath) as! EmptyCell
         cell.emptyText?.text = "No hay recetas medicas que puedas ver, manda un mensaje a tu doctor para que te cree una"

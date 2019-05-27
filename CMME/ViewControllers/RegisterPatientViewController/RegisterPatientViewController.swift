@@ -50,29 +50,39 @@ class RegisterPatientViewController: UIViewController {
     }
     
     @IBAction func executeRegister() {
-        if let gmail = gmailPatient?.text {
-            sGmail = gmail
-        }
-        if let contrasenna = contrasennaPatient?.text {
-            sContraseña = contrasenna
-        }
-        Firebase.sharedInstance.patient.sGmail = gmailPatient?.text
-        Firebase.sharedInstance.patient.sNombreCompleto  = nomComplPatient?.text
-        Firebase.sharedInstance.patient.sNumNIF  = nifPatient?.text
-        Firebase.sharedInstance.patient.sTarjSani = tarjSanPatient?.text
-        Firebase.sharedInstance.patient.sNumMovil = movilPatient?.text
-        Firebase.sharedInstance.patient.sTlfContact = numContPatient?.text
-        if let typeUser = userType {
-            self.showSpinner(onView: self.view)
-            Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
-                let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
-                let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
-                controller.email = self.sGmail
-                ContainerNavigationController.userType = .patient
-                //let tabBarVC = TabBarNavigationController(type:typeUser)
-                self.removeSpinner()
-                self.present(controller, animated: true, completion: nil)
-            })
+        if ((nomComplPatient?.text?.elementsEqual(""))!) || ((contrasennaPatient?.text?.elementsEqual(""))!) || ((gmailPatient?.text?.elementsEqual(""))!) ||
+            ((nifPatient?.text?.elementsEqual(""))!) ||
+            ((tarjSanPatient?.text?.elementsEqual(""))!) ||
+            ((movilPatient?.text?.elementsEqual(""))!) ||
+            ((numContPatient?.text?.elementsEqual(""))!) {
+            let alert = UIAlertController(title: "ERROR", message: "Esta erroneo o vacio algun campo", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            if let gmail = gmailPatient?.text {
+                sGmail = gmail
+            }
+            if let contrasenna = contrasennaPatient?.text {
+                sContraseña = contrasenna
+            }
+            Firebase.sharedInstance.patient.sGmail = gmailPatient?.text
+            Firebase.sharedInstance.patient.sNombreCompleto  = nomComplPatient?.text
+            Firebase.sharedInstance.patient.sNumNIF  = nifPatient?.text
+            Firebase.sharedInstance.patient.sTarjSani = tarjSanPatient?.text
+            Firebase.sharedInstance.patient.sNumMovil = movilPatient?.text
+            Firebase.sharedInstance.patient.sTlfContact = numContPatient?.text
+            if let typeUser = userType {
+                self.showSpinner(onView: self.view)
+                Firebase.sharedInstance.executeRegister(sEmail: sGmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                    let storyboard = UIStoryboard(name: "MainNavigation", bundle: nil)
+                    let controller: ContainerNavigationController = storyboard.instantiateViewController(withIdentifier: "ContainerNavigationController") as! ContainerNavigationController
+                    controller.email = self.sGmail
+                    ContainerNavigationController.userType = .patient
+                    //let tabBarVC = TabBarNavigationController(type:typeUser)
+                    self.removeSpinner()
+                    self.present(controller, animated: true, completion: nil)
+                })
+            }
         }
     }
 }
