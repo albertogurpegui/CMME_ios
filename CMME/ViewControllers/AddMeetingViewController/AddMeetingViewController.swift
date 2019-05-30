@@ -17,7 +17,7 @@ protocol AddMeetingViewControllerDelegate: class {
 
 class AddMeetingViewController: UIViewController {
     
-    @IBOutlet weak var names: UIPickerView!
+    @IBOutlet weak var namesPicker: UIPickerView!
     @IBOutlet weak var dateCalendar: UIDatePicker!
     @IBOutlet weak var viewPopup: UIView!
     @IBOutlet weak var namePatient: UILabel!
@@ -43,9 +43,9 @@ class AddMeetingViewController: UIViewController {
         dateConsultion.text = ""
         descriptionMeeting.text = ""
         addMeetingViewControllerDesign()
-        Firebase.sharedInstance.getNameDoctorsOrPatients(completion: { (namesDoctors) in
-            self.pickerData = namesDoctors
-            self.names.reloadAllComponents()
+        Firebase.sharedInstance.getNameDoctorsOrPatients(completion: { (names) in
+            self.pickerData = names
+            self.namesPicker.reloadAllComponents()
         })
     }
     
@@ -86,7 +86,7 @@ class AddMeetingViewController: UIViewController {
     
     func addMeetingViewControllerDesign() {
         self.view.setGradientBackground()
-        names.isHidden = true
+        namesPicker.isHidden = true
         dateCalendar.isHidden = true
         if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
@@ -134,21 +134,21 @@ class AddMeetingViewController: UIViewController {
     
     @objc func clickUILabelName(_ sender:UITapGestureRecognizer) {
         if sender.state == .ended {
-            names.isHidden = false
+            namesPicker.isHidden = false
             dateCalendar.isHidden = true
         }
     }
     
     @objc func clickEverythingInsteadOfUILabelNameDate(_ sender:UITapGestureRecognizer) {
         if sender.state == .ended {
-            names.isHidden = true
+            namesPicker.isHidden = true
             dateCalendar.isHidden = true
         }
     }
     
     @objc func clickUILabelDate(_ sender:UITapGestureRecognizer) {
         if sender.state == .ended {
-            names.isHidden = true
+            namesPicker.isHidden = true
             dateCalendar.isHidden = false
             datePickerValueChanged(datePicker: dateCalendar)
         }

@@ -11,7 +11,6 @@ import MessageInputBar
 import MessageKit
 
 class MessageViewController: MessagesViewController {
-    var messages: [Message] = []
     var member: Member!
 
     override func viewDidLoad() {
@@ -21,11 +20,14 @@ class MessageViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.delegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        view.setGradientBackground()
+        self.view.setGradientBackground()
+        self.view.addSubview(messageInputBar)
         let newMessage = Message(
             member: member,
             text: "Hola que tal",
             messageId: UUID().uuidString)
-        messages.append(newMessage)
+        Firebase.sharedInstance.arrMessages.append(newMessage)
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToBottom(animated: true)
     }
@@ -33,7 +35,7 @@ class MessageViewController: MessagesViewController {
 
 extension MessageViewController: MessagesDataSource {
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messages.count
+        return Firebase.sharedInstance.arrMessages.count
     }
     
     func currentSender() -> Sender {
@@ -42,7 +44,7 @@ extension MessageViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messages[indexPath.section]
+        return Firebase.sharedInstance.arrMessages[indexPath.section]
     }
     
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
@@ -75,7 +77,7 @@ extension MessageViewController: MessagesLayoutDelegate {
 
 extension MessageViewController: MessagesDisplayDelegate {
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        let message = messages[indexPath.section]
+        let message = Firebase.sharedInstance.arrMessages[indexPath.section]
         let color = message.member.color
         avatarView.backgroundColor = color
     }
@@ -103,7 +105,7 @@ extension MessageViewController: MessageInputBarDelegate {
          Firebase.sharedInstance.message.sReceiverID =
          Firebase.sharedInstance.message.sSenderName = */
         
-        messages.append(newMessage)
+        Firebase.sharedInstance.arrMessages.append(newMessage)
         inputBar.inputTextView.text = ""
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToBottom(animated: true)

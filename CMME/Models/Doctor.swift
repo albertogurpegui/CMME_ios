@@ -18,7 +18,6 @@ class Doctor: NSObject {
     var sGmail:String?
     var sHospTrabaj:String?
     var sRegisNacTitu:String?
-    var meetingDoctor: [Meeting] = []
     
     func setMap (valores:[String:Any]) {
         sNombreCompleto = valores[IDNombreCompleto] as? String

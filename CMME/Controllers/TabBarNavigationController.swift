@@ -13,7 +13,6 @@ class TabBarNavigationController: UITabBarController {
     @IBOutlet weak var signOutButton: UIBarButtonItem?
     let meetingVC = MeetingViewController()
     let prescriptionVC = PrescriptionViewController()
-    let patientsVC = PatientsViewController()
     let hospitalsVC = HospitalsViewController()
     let chatsVC = ChatViewController()
     
@@ -37,9 +36,16 @@ class TabBarNavigationController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 1:
-            let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
-            
-            self.navigationItem.leftBarButtonItem = addButtonItem
+            if let typeUser = ContainerNavigationController.userType {
+                switch typeUser {
+                case .doctor:
+                    let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: meetingVC, action: #selector(meetingVC.addPressed))
+                    
+                    self.navigationItem.leftBarButtonItem = addButtonItem
+                case .patient:
+                    self.navigationItem.leftBarButtonItem = nil
+                }
+            }
         case 2:
             if let typeUser = ContainerNavigationController.userType {
                 switch typeUser {
@@ -52,10 +58,16 @@ class TabBarNavigationController: UITabBarController {
                 }
             }
         case 3:
-            self.navigationItem.leftBarButtonItem = nil
-        case 4:
-            self.navigationItem.leftBarButtonItem = nil
-            self.tabBar.isHidden = true
+            if let typeUser = ContainerNavigationController.userType {
+                switch typeUser {
+                case .doctor:
+                    let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: chatsVC, action: #selector(chatsVC.addPressed))
+                    
+                    self.navigationItem.leftBarButtonItem = addButtonItem
+                case .patient:
+                    self.navigationItem.leftBarButtonItem = nil
+                }
+            }
         default:
             break
         }
@@ -74,16 +86,12 @@ class TabBarNavigationController: UITabBarController {
                 prescriptionVC.tabBarItem.title = "Recetas"
                 prescriptionVC.tabBarItem.tag = 2
                 prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
-                patientsVC.tabBarItem.title = "Pacientes"
-                patientsVC.tabBarItem.tag = 3
-                patientsVC.tabBarItem.image = UIImage(named: "Cast")
                 chatsVC.tabBarItem.title = "Chats"
-                chatsVC.tabBarItem.tag = 4
+                chatsVC.tabBarItem.tag = 3
                 chatsVC.tabBarItem.image = UIImage(named: "")
                 
                 self.viewControllers = [meetingVC,
                                         prescriptionVC,
-                                        patientsVC,
                                         chatsVC]
                 
             case .patient:

@@ -121,11 +121,11 @@ extension MeetingViewController: AddMeetingViewControllerDelegate {
         switch ContainerNavigationController.userType {
         case .doctor?:
             if let completeName =  Firebase.sharedInstance.doctor.sNombreCompleto{
-                self.addNotification(nameOfCreator: completeName)
+                self.addNotificationMeeting(nameOfCreator: completeName)
             }
         case .patient?:
             if let completeName =  Firebase.sharedInstance.patient.sNombreCompleto{
-                self.addNotification(nameOfCreator: completeName)
+                self.addNotificationMeeting(nameOfCreator: completeName)
             }
         case .none:
             break

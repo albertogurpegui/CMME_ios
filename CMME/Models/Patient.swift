@@ -22,7 +22,6 @@ class Patient: NSObject {
     var sNumNIF:String?
     var sTarjSani:String?
     var sTlfContact:String?
-    var meetingsPatient: [Meeting] = []
 
     func setMap (valores:[String:Any]) {
         sNombreCompleto = valores[IDNombreCompleto] as? String

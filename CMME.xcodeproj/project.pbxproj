@@ -15,8 +15,7 @@
 		16024A2F2225461F006F047E /* PrescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16024A2D2225461F006F047E /* PrescriptionViewController.xib */; };
 		16024A33222546E1006F047E /* HospitalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16024A31222546E1006F047E /* HospitalsViewController.swift */; };
 		16024A34222546E1006F047E /* HospitalsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16024A32222546E1006F047E /* HospitalsViewController.xib */; };
-		16024A3822254726006F047E /* PatientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16024A3622254726006F047E /* PatientsViewController.swift */; };
-		16024A3922254726006F047E /* PatientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16024A3722254726006F047E /* PatientsViewController.xib */; };
+		16062D1A229DB8AF00352288 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16062D19229DB8AF00352288 /* Contact.swift */; };
 		1607E3C5222FFDB20058D2E1 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1607E3C4222FFDB20058D2E1 /* Meeting.swift */; };
 		1609BB7C223115C000695D7D /* ContainerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1609BB7A223115BF00695D7D /* ContainerNavigationController.swift */; };
 		1609BB7D223115C000695D7D /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1609BB7B223115BF00695D7D /* TabBarNavigationController.swift */; };
@@ -45,6 +44,8 @@
 		16FA04E0221E8F9A00F1D933 /* CMMETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04DF221E8F9A00F1D933 /* CMMETests.swift */; };
 		16FA04EB221E8F9A00F1D933 /* CMMEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA04EA221E8F9A00F1D933 /* CMMEUITests.swift */; };
 		16FC73F3224A504000345F47 /* animation-w500-h500.json in Resources */ = {isa = PBXBuildFile; fileRef = 16FC73F2224A504000345F47 /* animation-w500-h500.json */; };
+		16FCCDBC229EFB340071C35D /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FCCDBA229EFB340071C35D /* AddContactViewController.swift */; };
+		16FCCDBD229EFB340071C35D /* AddContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FCCDBB229EFB340071C35D /* AddContactViewController.xib */; };
 		16FDA3EB22423C9F0033524D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDA3EA22423C9F0033524D /* UIViewControllerExtension.swift */; };
 		16FDA3EF22425FA30033524D /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDA3ED22425FA30033524D /* EmptyCell.swift */; };
 		16FDA3F022425FA30033524D /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16FDA3EE22425FA30033524D /* EmptyCell.xib */; };
@@ -81,8 +82,7 @@
 		16024A2D2225461F006F047E /* PrescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionViewController.xib; sourceTree = "<group>"; };
 		16024A31222546E1006F047E /* HospitalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalsViewController.swift; sourceTree = "<group>"; };
 		16024A32222546E1006F047E /* HospitalsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HospitalsViewController.xib; sourceTree = "<group>"; };
-		16024A3622254726006F047E /* PatientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsViewController.swift; sourceTree = "<group>"; };
-		16024A3722254726006F047E /* PatientsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatientsViewController.xib; sourceTree = "<group>"; };
+		16062D19229DB8AF00352288 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		1607E3C4222FFDB20058D2E1 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		1609BB7A223115BF00695D7D /* ContainerNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerNavigationController.swift; sourceTree = "<group>"; };
 		1609BB7B223115BF00695D7D /* TabBarNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
@@ -117,6 +117,8 @@
 		16FA04EA221E8F9A00F1D933 /* CMMEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMEUITests.swift; sourceTree = "<group>"; };
 		16FA04EC221E8F9A00F1D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16FC73F2224A504000345F47 /* animation-w500-h500.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "animation-w500-h500.json"; sourceTree = SOURCE_ROOT; };
+		16FCCDBA229EFB340071C35D /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		16FCCDBB229EFB340071C35D /* AddContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddContactViewController.xib; sourceTree = "<group>"; };
 		16FDA3EA22423C9F0033524D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		16FDA3ED22425FA30033524D /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		16FDA3EE22425FA30033524D /* EmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
@@ -200,15 +202,6 @@
 			path = HospitalsViewController;
 			sourceTree = "<group>";
 		};
-		16024A3522254708006F047E /* PatientsViewController */ = {
-			isa = PBXGroup;
-			children = (
-				16024A3622254726006F047E /* PatientsViewController.swift */,
-				16024A3722254726006F047E /* PatientsViewController.xib */,
-			);
-			path = PatientsViewController;
-			sourceTree = "<group>";
-		};
 		1609BB79223115BF00695D7D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,11 +240,11 @@
 		162BD09C221E92CE00C1BBE4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				16FCCDB9229EFAF70071C35D /* AddContactViewController */,
 				16E91520229C5F90007C7095 /* MessageViewController */,
 				16FEC7DC229947D9009F400B /* ChatViewController */,
 				16024A2122252ED1006F047E /* MeetingViewController */,
 				16ED3E572238FA5900DB8F36 /* AddMeetingViewController */,
-				16024A3522254708006F047E /* PatientsViewController */,
 				16024A30222546B7006F047E /* HospitalsViewController */,
 				16024A2B222545EA006F047E /* PrescriptionViewController */,
 				16A982E82223FCD600521802 /* RegisterDoctorViewController */,
@@ -286,6 +279,7 @@
 				162BD0B3221ECA0800C1BBE4 /* Doctor.swift */,
 				1607E3C4222FFDB20058D2E1 /* Meeting.swift */,
 				16E91519229C4F49007C7095 /* Message.swift */,
+				16062D19229DB8AF00352288 /* Contact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,6 +379,15 @@
 				16FA04EC221E8F9A00F1D933 /* Info.plist */,
 			);
 			path = CMMEUITests;
+			sourceTree = "<group>";
+		};
+		16FCCDB9229EFAF70071C35D /* AddContactViewController */ = {
+			isa = PBXGroup;
+			children = (
+				16FCCDBA229EFB340071C35D /* AddContactViewController.swift */,
+				16FCCDBB229EFB340071C35D /* AddContactViewController.xib */,
+			);
+			path = AddContactViewController;
 			sourceTree = "<group>";
 		};
 		16FDA3EC22425F7D0033524D /* EmptyCell */ = {
@@ -553,8 +556,8 @@
 				16A982E72223ED4500521802 /* RegisterPatientViewController.xib in Resources */,
 				16024A34222546E1006F047E /* HospitalsViewController.xib in Resources */,
 				16FDA3F022425FA30033524D /* EmptyCell.xib in Resources */,
+				16FCCDBD229EFB340071C35D /* AddContactViewController.xib in Resources */,
 				1620AA84221FFB1A00346BEF /* GoogleService-Info.plist in Resources */,
-				16024A3922254726006F047E /* PatientsViewController.xib in Resources */,
 				16A982E22223D9BF00521802 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,11 +654,11 @@
 			files = (
 				16FDE1E922317C9000E5A400 /* TypeUser.swift in Sources */,
 				1620AA7C221FF34F00346BEF /* LoginViewController.swift in Sources */,
+				16062D1A229DB8AF00352288 /* Contact.swift in Sources */,
 				16FEC7DF2299480B009F400B /* ChatViewController.swift in Sources */,
 				1607E3C5222FFDB20058D2E1 /* Meeting.swift in Sources */,
 				162BD0AF221EC11500C1BBE4 /* Firebase.swift in Sources */,
 				1609BB7C223115C000695D7D /* ContainerNavigationController.swift in Sources */,
-				16024A3822254726006F047E /* PatientsViewController.swift in Sources */,
 				162BD0B4221ECA0800C1BBE4 /* Doctor.swift in Sources */,
 				16A982EB2223FD6200521802 /* RegisterDoctorViewController.swift in Sources */,
 				16ED3E592238FA9000DB8F36 /* AddMeetingViewController.swift in Sources */,
@@ -671,6 +674,7 @@
 				1620AA87222007D800346BEF /* UIViewExtension.swift in Sources */,
 				16FDA3EF22425FA30033524D /* EmptyCell.swift in Sources */,
 				162BD0AA221E9C0B00C1BBE4 /* MainViewController.swift in Sources */,
+				16FCCDBC229EFB340071C35D /* AddContactViewController.swift in Sources */,
 				16024A2422252F40006F047E /* MeetingViewController.swift in Sources */,
 				16A982E62223ED4500521802 /* RegisterPatientViewController.swift in Sources */,
 			);

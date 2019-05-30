@@ -35,7 +35,7 @@ extension UIViewController {
         }
     }
     
-    func addNotification(nameOfCreator: String) {
+    func addNotificationMeeting(nameOfCreator: String) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         
@@ -44,6 +44,27 @@ extension UIViewController {
         content.badge = 1
         content.sound = UNNotificationSound.default
                 
+        let date = Date(timeIntervalSinceNow: 5)
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: "CMME", content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            if error != nil {
+                print(error as Any)
+            }
+        }
+    }
+    
+    func addNotificationContact(nameOfCreator: String) {
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        
+        content.title = nameOfCreator + " ha creado un nuev contacto"
+        content.body = "Entra en la aplicacion, hay un nuevo contacto creado ya puedes hablar con el por el chat"
+        content.badge = 1
+        content.sound = UNNotificationSound.default
+        
         let date = Date(timeIntervalSinceNow: 5)
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
