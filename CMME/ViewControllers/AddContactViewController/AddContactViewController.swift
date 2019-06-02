@@ -18,12 +18,9 @@ class AddContactViewController: UIViewController {
     
     weak var delegate: AddContactViewControllerDelegate?
     var contactUid: String?
-    @IBOutlet weak var namesPicker: UIPickerView!
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var gmailsPicker: UIPickerView!
+    @IBOutlet weak var gmail: UILabel!
     @IBOutlet weak var viewPopUp: UIView!
-    @IBOutlet weak var createButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-
     var pickerData: [String] = []
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,11 +32,11 @@ class AddContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.text = ""
-        addMeetingViewControllerDesign()
-        Firebase.sharedInstance.getNameDoctorsOrPatients(completion: { (namesDoctors) in
-            self.pickerData = namesDoctors
-            self.namesPicker.reloadAllComponents()
+        gmail.text = ""
+        addContactViewControllerDesign()
+        Firebase.sharedInstance.getGmailDoctorsOrPatients(completion: { (gmails) in
+            self.pickerData = gmails
+            self.gmailsPicker.reloadAllComponents()
         })
     }
     
@@ -49,11 +46,11 @@ class AddContactViewController: UIViewController {
     
     @IBAction func createButtonPressed() {
         print("Has clickado en añadir")
-        if ((name.text?.elementsEqual(""))!)  {
+        if ((gmail.text?.elementsEqual(""))!)  {
             self.delegate?.errorAddContactViewController(self)
         }else{
-            Firebase.sharedInstance.contact.sNombreCompleto = name.text
-            Firebase.sharedInstance.addMeeting()
+            Firebase.sharedInstance.contact.sGmailContacto = gmail.text
+            Firebase.sharedInstance.addContact()
             self.delegate?.addContactViewController(self, didEditContact: Firebase.sharedInstance.contact)
         }
     }
@@ -74,28 +71,30 @@ class AddContactViewController: UIViewController {
         }
     }
     
-    func addMeetingViewControllerDesign() {
+    func addContactViewControllerDesign() {
         self.view.setGradientBackground()
-        namesPicker.isHidden = true
+        gmailsPicker.isHidden = true
         if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
             case .doctor:
-                name.isUserInteractionEnabled = true
-                _ = UITapGestureRecognizer(target: self, action: #selector(clickUILabelName(_:)))
+                gmail.isUserInteractionEnabled = true
+                let tapUILabelName = UITapGestureRecognizer(target: self, action: #selector(clickUILabelName(_:)))
+                gmail.addGestureRecognizer(tapUILabelName)
             case .patient:
-                name.isUserInteractionEnabled = true
-                _ = UITapGestureRecognizer(target: self, action: #selector(clickUILabelName(_:)))
+                gmail.isUserInteractionEnabled = true
+                let tapUILabelName = UITapGestureRecognizer(target: self, action: #selector(clickUILabelName(_:)))
+                gmail.addGestureRecognizer(tapUILabelName)
             }
         }
         viewPopUp.layer.cornerRadius = 8
         viewPopUp.layer.masksToBounds = true
-        name.layer.cornerRadius = 8
-        name.layer.masksToBounds = true
+        gmail.layer.cornerRadius = 8
+        gmail.layer.masksToBounds = true
     }
     
     @objc func clickUILabelName(_ sender:UITapGestureRecognizer) {
         if sender.state == .ended {
-            namesPicker.isHidden = false
+            gmailsPicker.isHidden = false
         }
     }
 }
@@ -117,9 +116,9 @@ extension AddContactViewController: UIPickerViewDelegate, UIPickerViewDataSource
         if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
             case .doctor:
-                name.text = pickerData[row]
+                gmail.text = pickerData[row]
             case .patient:
-                name.text = pickerData[row]
+                gmail.text = pickerData[row]
             }
         }
     }

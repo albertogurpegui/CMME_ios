@@ -20,7 +20,6 @@ class MessageViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.delegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        view.setGradientBackground()
         self.view.setGradientBackground()
         self.view.addSubview(messageInputBar)
         let newMessage = Message(

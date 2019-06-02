@@ -10,20 +10,20 @@ import UIKit
 
 class Contact: NSObject {
     let IDContacto = "ID Contacto"
-    let IDNombreCompleto = "Nombre Completo Contacto"
+    let IDGmailContacto = "Gmail Contacto"
     
     var sContactoID:String?
-    var sNombreCompleto:String?
+    var sGmailContacto:String?
     
     func setMap (valores:[String:Any]) {
         sContactoID = valores[IDContacto] as? String
-        sNombreCompleto = valores[IDNombreCompleto] as? String
+        sGmailContacto = valores[IDGmailContacto] as? String
     }
     
     func getMap () -> [String:Any]{
         var mapTemp:[String:Any] = [:]
         mapTemp [IDContacto] = sContactoID as Any
-        mapTemp [IDNombreCompleto] = sNombreCompleto as Any
+        mapTemp [IDGmailContacto] = sGmailContacto as Any
         return mapTemp
     }
 }

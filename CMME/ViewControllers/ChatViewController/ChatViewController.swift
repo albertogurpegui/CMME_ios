@@ -51,6 +51,9 @@ class ChatViewController: UIViewController {
         let identifier = "EmptyCell"
         let cellNib = UINib(nibName: identifier, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: identifier)
+        let identifier2 = "ContactCell"
+        let cellNib2 = UINib(nibName: identifier2, bundle: nil)
+        tableView.register(cellNib2, forCellReuseIdentifier: identifier2)
     }
     
     internal func createButtonAdd(){
@@ -96,23 +99,26 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         if Firebase.sharedInstance.arrContacts.count == 0 {
             return 95.0
         }else {
-            return 220.0
+            return 60.0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if Firebase.sharedInstance.arrContacts.count == 0 {
             let cell: EmptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath) as! EmptyCell
-            cell.emptyText?.text = "No hay citas medicas que puedas ver, pincha en el boton '+' para solicitar una cita"
+            if let typeUser = ContainerNavigationController.userType {
+                switch typeUser {
+                case .doctor:
+                    cell.emptyText?.text = "No tienes contactos con quien puedas hablar, pincha en el boton '+' para añadir uno"
+                case .patient:
+                    cell.emptyText?.text = "No tienes contactos con quien puedas hablar"
+                }
+            }
             return cell
         }else {
-            let cell: MeetingCell = tableView.dequeueReusableCell(withIdentifier: "MeetingCell", for: indexPath) as! MeetingCell
-            let meeting = Firebase.sharedInstance.arrMeeting[indexPath.row]
-            cell.meetingDoctor?.text = meeting.sNombreDoctorCompleto
-            cell.meetingPatient?.text = meeting.sNombrePacienteCompleto
-            cell.meetingDescription?.text = meeting.sDescripcionCita
-            cell.meetingConsultation?.text = meeting.sSalaCita
-            cell.meetingDate?.text = meeting.sFechaCita
+            let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
+            let contact = Firebase.sharedInstance.arrContacts[indexPath.row]
+            cell.nameContact?.text = contact.sGmailContacto
             return cell
         }
     }

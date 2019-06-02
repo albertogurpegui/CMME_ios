@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,42 +12,68 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddContactViewController" customModule="CMME" customModuleProvider="target">
             <connections>
-                <outlet property="name" destination="3cw-Jj-a9U" id="FOZ-DY-VRz"/>
-                <outlet property="namesPicker" destination="Gvj-7W-hPJ" id="Cv2-VX-GWK"/>
+                <outlet property="gmail" destination="3cw-Jj-a9U" id="zvE-Zb-qdk"/>
+                <outlet property="gmailsPicker" destination="Gvj-7W-hPJ" id="rRu-5W-l8X"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewPopUp" destination="1yU-MT-zmU" id="qKp-fB-g5P"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1yU-MT-zmU">
-                    <rect key="frame" x="47" y="135" width="280" height="145"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gvj-7W-hPJ">
+                    <rect key="frame" x="0.0" y="436" width="414" height="300"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Uh8-wC-VlI"/>
+                        <outlet property="delegate" destination="-1" id="Cn0-dn-K1w"/>
+                    </connections>
+                </pickerView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yU-MT-zmU">
+                    <rect key="frame" x="67" y="193" width="280" height="145"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nombre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cw-Jj-a9U">
-                            <rect key="frame" x="40" y="57" width="200" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8k5-BB-f5E">
+                            <rect key="frame" x="8" y="107" width="61" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <state key="normal" title="Cancelar"/>
+                            <connections>
+                                <action selector="cancelButtonPressed" destination="-1" eventType="touchUpInside" id="OUW-Fe-qFV"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJU-cx-23I">
                             <rect key="frame" x="234" y="107" width="38" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Crear"/>
+                            <connections>
+                                <action selector="createButtonPressed" destination="-1" eventType="touchUpInside" id="Uk5-K9-xTb"/>
+                            </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gmail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cw-Jj-a9U">
+                            <rect key="frame" x="40" y="57" width="200" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="145" id="aR1-8f-JTp"/>
+                    </constraints>
                 </view>
-                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvj-7W-hPJ">
-                    <rect key="frame" x="0.0" y="367" width="375" height="300"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                </pickerView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Gvj-7W-hPJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="8Rm-sT-73f"/>
+                <constraint firstItem="Gvj-7W-hPJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BaE-4h-poK"/>
+                <constraint firstItem="Gvj-7W-hPJ" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="SkP-X3-v3K"/>
+                <constraint firstItem="1yU-MT-zmU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="173" id="XYu-NM-dwF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1yU-MT-zmU" secondAttribute="trailing" constant="67" id="dm4-2L-m5n"/>
+                <constraint firstItem="Gvj-7W-hPJ" firstAttribute="top" secondItem="1yU-MT-zmU" secondAttribute="bottom" constant="98" id="p8n-rQ-HEh"/>
+                <constraint firstItem="1yU-MT-zmU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="67" id="xOA-1a-rbK"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="137.18140929535232"/>
         </view>

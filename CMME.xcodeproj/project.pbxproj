@@ -29,6 +29,8 @@
 		162BD0AF221EC11500C1BBE4 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0AE221EC11500C1BBE4 /* Firebase.swift */; };
 		162BD0B2221EC9EE00C1BBE4 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0B1221EC9EE00C1BBE4 /* Patient.swift */; };
 		162BD0B4221ECA0800C1BBE4 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162BD0B3221ECA0800C1BBE4 /* Doctor.swift */; };
+		167DF40422A28F06000BFC22 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DF40222A28F06000BFC22 /* ContactCell.swift */; };
+		167DF40522A28F06000BFC22 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 167DF40322A28F06000BFC22 /* ContactCell.xib */; };
 		16A982E22223D9BF00521802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16A982E12223D9BF00521802 /* Assets.xcassets */; };
 		16A982E62223ED4500521802 /* RegisterPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A982E42223ED4500521802 /* RegisterPatientViewController.swift */; };
 		16A982E72223ED4500521802 /* RegisterPatientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16A982E52223ED4500521802 /* RegisterPatientViewController.xib */; };
@@ -96,6 +98,8 @@
 		162BD0AE221EC11500C1BBE4 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		162BD0B1221EC9EE00C1BBE4 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		162BD0B3221ECA0800C1BBE4 /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
+		167DF40222A28F06000BFC22 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		167DF40322A28F06000BFC22 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		16A982E12223D9BF00521802 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16A982E42223ED4500521802 /* RegisterPatientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPatientViewController.swift; sourceTree = "<group>"; };
 		16A982E52223ED4500521802 /* RegisterPatientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterPatientViewController.xib; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		1600EFA5222F08E0009C962C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				167DF40022A28E76000BFC22 /* ContactCell */,
 				16FDA3EC22425F7D0033524D /* EmptyCell */,
 				1600EFAA222F09AB009C962C /* MeetingCell */,
 			);
@@ -282,6 +287,15 @@
 				16062D19229DB8AF00352288 /* Contact.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		167DF40022A28E76000BFC22 /* ContactCell */ = {
+			isa = PBXGroup;
+			children = (
+				167DF40222A28F06000BFC22 /* ContactCell.swift */,
+				167DF40322A28F06000BFC22 /* ContactCell.xib */,
+			);
+			path = ContactCell;
 			sourceTree = "<group>";
 		};
 		16A982E32223ED4500521802 /* RegisterPatientViewController */ = {
@@ -544,6 +558,7 @@
 				16A982EC2223FD6200521802 /* RegisterDoctorViewController.xib in Resources */,
 				1620AA7D221FF34F00346BEF /* LoginViewController.xib in Resources */,
 				16024A2F2225461F006F047E /* PrescriptionViewController.xib in Resources */,
+				167DF40522A28F06000BFC22 /* ContactCell.xib in Resources */,
 				16FC73F3224A504000345F47 /* animation-w500-h500.json in Resources */,
 				16024A2522252F40006F047E /* MeetingViewController.xib in Resources */,
 				16FA04D5221E8F9A00F1D933 /* LaunchScreen.storyboard in Resources */,
@@ -668,6 +683,7 @@
 				16024A33222546E1006F047E /* HospitalsViewController.swift in Sources */,
 				16FDA3EB22423C9F0033524D /* UIViewControllerExtension.swift in Sources */,
 				1609BB7D223115C000695D7D /* TabBarNavigationController.swift in Sources */,
+				167DF40422A28F06000BFC22 /* ContactCell.swift in Sources */,
 				162BD0B2221EC9EE00C1BBE4 /* Patient.swift in Sources */,
 				16FA04CB221E8F9800F1D933 /* AppDelegate.swift in Sources */,
 				16E9151A229C4F49007C7095 /* Message.swift in Sources */,

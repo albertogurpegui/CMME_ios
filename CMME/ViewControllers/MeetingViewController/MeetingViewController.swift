@@ -91,7 +91,14 @@ extension MeetingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if Firebase.sharedInstance.arrMeeting.count == 0 {
             let cell: EmptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath) as! EmptyCell
-            cell.emptyText?.text = "No hay citas medicas que puedas ver, pincha en el boton '+' para solicitar una cita"
+            if let typeUser = ContainerNavigationController.userType {
+                switch typeUser {
+                case .doctor:
+                    cell.emptyText?.text = "No tienes citas que puedas consultar, pincha en el boton '+' para solicitar una cita"
+                case .patient:
+                    cell.emptyText?.text = "No tienes citas que puedas consultar, contacta a tu respectivo doctor mediante chats"
+                }
+            }
             return cell
         }else {
             let cell: MeetingCell = tableView.dequeueReusableCell(withIdentifier: "MeetingCell", for: indexPath) as! MeetingCell

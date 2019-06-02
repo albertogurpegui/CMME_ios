@@ -68,6 +68,8 @@ class TabBarNavigationController: UITabBarController {
                     self.navigationItem.leftBarButtonItem = nil
                 }
             }
+        case 4:
+            self.navigationItem.leftBarButtonItem = nil
         default:
             break
         }
