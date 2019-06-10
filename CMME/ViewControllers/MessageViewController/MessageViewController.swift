@@ -12,23 +12,15 @@ import MessageKit
 
 class MessageViewController: MessagesViewController {
     var member: Member!
+    var gmailContact: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        member = Member(name: "bluemoon", color: .blue)
+        member = Member(name: Firebase.sharedInstance.user?.email ?? "", color: .blue)
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.delegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        self.view.setGradientBackground()
-        self.view.addSubview(messageInputBar)
-        let newMessage = Message(
-            member: member,
-            text: "Hola que tal",
-            messageId: UUID().uuidString)
-        Firebase.sharedInstance.arrMessages.append(newMessage)
-        messagesCollectionView.reloadData()
-        messagesCollectionView.scrollToBottom(animated: true)
     }
 }
 

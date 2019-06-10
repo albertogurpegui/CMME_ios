@@ -130,6 +130,13 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contact = Firebase.sharedInstance.arrContacts[indexPath.row]
+        let messageVC = MessageViewController()
+        messageVC.gmailContact = contact.sGmailContacto
+        navigationController?.pushViewController(messageVC, animated: true)
+    }
 }
 
 extension ChatViewController: AddContactViewControllerDelegate {

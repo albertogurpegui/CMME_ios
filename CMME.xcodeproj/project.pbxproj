@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1600EFA8222F0917009C962C /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600EFA6222F0917009C962C /* MeetingCell.swift */; };
 		1600EFA9222F0917009C962C /* MeetingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1600EFA7222F0917009C962C /* MeetingCell.xib */; };
+		1601F15722ACF11D00569BB1 /* AddPrescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1601F15522ACF11D00569BB1 /* AddPrescriptionViewController.swift */; };
+		1601F15822ACF11D00569BB1 /* AddPrescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1601F15622ACF11D00569BB1 /* AddPrescriptionViewController.xib */; };
+		1601F15C22ACFE5A00569BB1 /* PrescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1601F15A22ACFE5A00569BB1 /* PrescriptionCell.swift */; };
+		1601F15D22ACFE5A00569BB1 /* PrescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1601F15B22ACFE5A00569BB1 /* PrescriptionCell.xib */; };
+		1601F15F22ACFE6D00569BB1 /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1601F15E22ACFE6D00569BB1 /* Prescription.swift */; };
 		16024A2422252F40006F047E /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16024A2222252F40006F047E /* MeetingViewController.swift */; };
 		16024A2522252F40006F047E /* MeetingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16024A2322252F40006F047E /* MeetingViewController.xib */; };
 		16024A2E2225461F006F047E /* PrescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16024A2C2225461F006F047E /* PrescriptionViewController.swift */; };
@@ -78,6 +83,11 @@
 		0679097ED5FA0B91AAB28277 /* Pods_CMME.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMME.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EFA6222F0917009C962C /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		1600EFA7222F0917009C962C /* MeetingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingCell.xib; sourceTree = "<group>"; };
+		1601F15522ACF11D00569BB1 /* AddPrescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrescriptionViewController.swift; sourceTree = "<group>"; };
+		1601F15622ACF11D00569BB1 /* AddPrescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPrescriptionViewController.xib; sourceTree = "<group>"; };
+		1601F15A22ACFE5A00569BB1 /* PrescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionCell.swift; sourceTree = "<group>"; };
+		1601F15B22ACFE5A00569BB1 /* PrescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionCell.xib; sourceTree = "<group>"; };
+		1601F15E22ACFE6D00569BB1 /* Prescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
 		16024A2222252F40006F047E /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 		16024A2322252F40006F047E /* MeetingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingViewController.xib; sourceTree = "<group>"; };
 		16024A2C2225461F006F047E /* PrescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +174,7 @@
 		1600EFA5222F08E0009C962C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1601F15922ACFE3B00569BB1 /* PrescriptionCell */,
 				167DF40022A28E76000BFC22 /* ContactCell */,
 				16FDA3EC22425F7D0033524D /* EmptyCell */,
 				1600EFAA222F09AB009C962C /* MeetingCell */,
@@ -178,6 +189,24 @@
 				1600EFA7222F0917009C962C /* MeetingCell.xib */,
 			);
 			path = MeetingCell;
+			sourceTree = "<group>";
+		};
+		1601F15422ACF0DB00569BB1 /* AddPrescriptionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1601F15522ACF11D00569BB1 /* AddPrescriptionViewController.swift */,
+				1601F15622ACF11D00569BB1 /* AddPrescriptionViewController.xib */,
+			);
+			path = AddPrescriptionViewController;
+			sourceTree = "<group>";
+		};
+		1601F15922ACFE3B00569BB1 /* PrescriptionCell */ = {
+			isa = PBXGroup;
+			children = (
+				1601F15A22ACFE5A00569BB1 /* PrescriptionCell.swift */,
+				1601F15B22ACFE5A00569BB1 /* PrescriptionCell.xib */,
+			);
+			path = PrescriptionCell;
 			sourceTree = "<group>";
 		};
 		16024A2122252ED1006F047E /* MeetingViewController */ = {
@@ -245,6 +274,7 @@
 		162BD09C221E92CE00C1BBE4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1601F15422ACF0DB00569BB1 /* AddPrescriptionViewController */,
 				16FCCDB9229EFAF70071C35D /* AddContactViewController */,
 				16E91520229C5F90007C7095 /* MessageViewController */,
 				16FEC7DC229947D9009F400B /* ChatViewController */,
@@ -285,6 +315,7 @@
 				1607E3C4222FFDB20058D2E1 /* Meeting.swift */,
 				16E91519229C4F49007C7095 /* Message.swift */,
 				16062D19229DB8AF00352288 /* Contact.swift */,
+				1601F15E22ACFE6D00569BB1 /* Prescription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -564,9 +595,11 @@
 				16FA04D5221E8F9A00F1D933 /* LaunchScreen.storyboard in Resources */,
 				1600EFA9222F0917009C962C /* MeetingCell.xib in Resources */,
 				162BD0A9221E9C0B00C1BBE4 /* MainViewController.xib in Resources */,
+				1601F15D22ACFE5A00569BB1 /* PrescriptionCell.xib in Resources */,
 				16E91523229C5F90007C7095 /* MessageViewController.xib in Resources */,
 				16FEC7E02299480B009F400B /* ChatViewController.xib in Resources */,
 				1609BB80223115CF00695D7D /* MainNavigation.storyboard in Resources */,
+				1601F15822ACF11D00569BB1 /* AddPrescriptionViewController.xib in Resources */,
 				16ED3E5B2238FA9700DB8F36 /* AddMeetingViewController.xib in Resources */,
 				16A982E72223ED4500521802 /* RegisterPatientViewController.xib in Resources */,
 				16024A34222546E1006F047E /* HospitalsViewController.xib in Resources */,
@@ -667,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1601F15722ACF11D00569BB1 /* AddPrescriptionViewController.swift in Sources */,
 				16FDE1E922317C9000E5A400 /* TypeUser.swift in Sources */,
 				1620AA7C221FF34F00346BEF /* LoginViewController.swift in Sources */,
 				16062D1A229DB8AF00352288 /* Contact.swift in Sources */,
@@ -685,10 +719,12 @@
 				1609BB7D223115C000695D7D /* TabBarNavigationController.swift in Sources */,
 				167DF40422A28F06000BFC22 /* ContactCell.swift in Sources */,
 				162BD0B2221EC9EE00C1BBE4 /* Patient.swift in Sources */,
+				1601F15C22ACFE5A00569BB1 /* PrescriptionCell.swift in Sources */,
 				16FA04CB221E8F9800F1D933 /* AppDelegate.swift in Sources */,
 				16E9151A229C4F49007C7095 /* Message.swift in Sources */,
 				1620AA87222007D800346BEF /* UIViewExtension.swift in Sources */,
 				16FDA3EF22425FA30033524D /* EmptyCell.swift in Sources */,
+				1601F15F22ACFE6D00569BB1 /* Prescription.swift in Sources */,
 				162BD0AA221E9C0B00C1BBE4 /* MainViewController.swift in Sources */,
 				16FCCDBC229EFB340071C35D /* AddContactViewController.swift in Sources */,
 				16024A2422252F40006F047E /* MeetingViewController.swift in Sources */,

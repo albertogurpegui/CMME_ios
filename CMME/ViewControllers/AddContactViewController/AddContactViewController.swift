@@ -63,7 +63,7 @@ class AddContactViewController: UIViewController {
             let iconText = ["🤔", "😳", "🙄", "😶"].sm_random()!
             view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
             view.layer.cornerRadius = 10
-            view.configureContent(title: "Warning", body: "Pulsa Ok para volver a la lista de citas (No se guardaran los datos)", iconImage: nil, iconText: iconText, buttonImage: nil, buttonTitle: "Ok", buttonTapHandler: { (button) in
+            view.configureContent(title: "Warning", body: "Pulsa Ok para volver a la lista de contactos (No se guardaran los datos)", iconImage: nil, iconText: iconText, buttonImage: nil, buttonTitle: "Ok", buttonTapHandler: { (button) in
                 self.navigationController?.popViewController(animated: true)
             })
             //view.configureContent(title: "Warning", body: "Volviste atrás", iconText: iconText)

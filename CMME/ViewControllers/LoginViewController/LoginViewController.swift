@@ -66,6 +66,7 @@ class LoginViewController: UIViewController {
                 switch typeUser {
                 case .doctor:
                     Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                        ContainerNavigationController.userType = .doctor
                         self.animationView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height)
                         self.animationView.animation = animation
                         self.animationView.contentMode = .scaleAspectFit
@@ -90,6 +91,7 @@ class LoginViewController: UIViewController {
                     })
                 case .patient:
                     Firebase.sharedInstance.executeLogin(sEmail: sEmail, sContraseña: sContraseña, typeUser: typeUser, completion: {(authdataResult) in
+                        ContainerNavigationController.userType = .patient
                         self.animationView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: self.view.frame.height)
                         self.animationView.animation = animation
                         self.animationView.contentMode = .scaleAspectFit

@@ -17,7 +17,7 @@
                 <outlet property="descriptionMeeting" destination="mpH-K0-Cuy" id="eeN-vF-r6S"/>
                 <outlet property="nameDoctor" destination="I89-i3-yY4" id="z2A-aX-vwq"/>
                 <outlet property="namePatient" destination="XGn-uC-iO6" id="1BI-c7-F4l"/>
-                <outlet property="names" destination="SCX-1D-kmr" id="5Vk-0N-61r"/>
+                <outlet property="namesPicker" destination="SCX-1D-kmr" id="3WG-ib-Hiz"/>
                 <outlet property="siteConsultion" destination="1E0-fI-KBa" id="eWb-Tr-w1b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="uOj-lZ-JDZ"/>
                 <outlet property="viewPopup" destination="seu-Rj-Kig" id="dc1-sE-AdJ"/>

@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 
 class Firebase: NSObject {
     
@@ -17,10 +18,15 @@ class Firebase: NSObject {
     var sPassword:String = ""
     var firDocumentRef: DocumentReference?
     var firStoreDB:Firestore?
+    var firStorage:Storage?
+    var firStorageRef:StorageReference?
+    var hmImagenesDescargadas:[String:UIImage]?=[:]
     var patient:Patient = Patient()
     var doctor:Doctor = Doctor()
     var meeting:Meeting = Meeting()
     var arrMeeting:[Meeting] = []
+    var prescription:Prescription = Prescription()
+    var arrPrescription:[Prescription] = []
     var contact:Contact = Contact()
     var arrContacts:[Contact] = []
     //var message:Message = Message()
@@ -31,6 +37,8 @@ class Firebase: NSObject {
     func initFireBase(){
         FirebaseApp.configure()
         firStoreDB=Firestore.firestore()
+        firStorage = Storage.storage()
+        firStorageRef = firStorage?.reference()
     }
     
     func saveData(){
@@ -274,7 +282,7 @@ class Firebase: NSObject {
                                 let value = document.data()
                                 let namePat = value["Nombre Completo"] as? String ?? ""
                                 if namePat == Firebase.sharedInstance.meeting.sNombrePacienteCompleto{
-                                    Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(document.documentID).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
+                                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(document.documentID).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
                                 }
                                 
                                 print("\(document.documentID) => \(document.data())")
@@ -292,12 +300,69 @@ class Firebase: NSObject {
                                 let value = document.data()
                                 let nameDoc = value["Nombre Completo"] as? String ?? ""
                                 if nameDoc == Firebase.sharedInstance.meeting.sNombreDoctorCompleto{
-                                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(document.documentID).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
+                                Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(document.documentID).collection("Citas").document(format.string(from: date)).setData(Firebase.sharedInstance.meeting.getMap())
                                 }
                                 print("\(document.documentID) => \(document.data())")
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    func addPrescription(gmailPat:String, urlImage:String) {
+        if let typeUser = ContainerNavigationController.userType {
+            let date = Date()
+            let format = DateFormatter()
+            format.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            switch typeUser {
+            case .doctor:
+                if let userADR = user {
+                    checkUidOfGmail(completion: {(uid) in
+                        let uidContact = uid
+                        Firebase.sharedInstance.prescription.sURLPrescription = urlImage
+                        Firebase.sharedInstance.prescription.sGmailPaciente = gmailPat
+                        Firebase.sharedInstance.prescription.sGmailDoctor = userADR.email
+                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Recetas").document(format.string(from: date)).setData(Firebase.sharedInstance.prescription.getMap())
+                        print("Añade receta en doctor " + userADR.email!)
+                        Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in
+                            if let documents = querySnapshot?.documents {
+                                for document in documents {
+                                    let value = document.data()
+                                    let gmailCont = value["Gmail"] as? String ?? ""
+                                    if gmailCont == Firebase.sharedInstance.prescription.sGmailPaciente {
+                                    Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(uidContact).collection("Recetas").document(format.string(from: date)).setData(Firebase.sharedInstance.prescription.getMap())
+                                    }
+                                    
+                                    print("\(document.documentID) => \(document.data())")
+                                }
+                            }
+                        }
+                    })
+                }
+            case .patient:
+                if let userADR = user {
+                    checkUidOfGmail(completion: {(uid) in
+                        let uidContact = uid
+                    Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.uid).collection("Recetas").document(format.string(from: date)).setData(Firebase.sharedInstance.prescription.getMap())
+                        print("Añade receta en doctor " + userADR.email!)
+                        Firebase.sharedInstance.firStoreDB?.collection("Doctores").addSnapshotListener { querySnapshot, error in
+                            if let documents = querySnapshot?.documents {
+                                for document in documents {
+                                    let value = document.data()
+                                    let gmailCont = value["Gmail"] as? String ?? ""
+                                    if gmailCont == Firebase.sharedInstance.prescription.sGmailPaciente {
+                                        
+                                        Firebase.sharedInstance.prescription.sGmailDoctor = userADR.email
+                                        Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(uidContact).collection("Recetas").document(format.string(from: date)).setData(Firebase.sharedInstance.prescription.getMap())
+                                    }
+                                    
+                                    print("\(document.documentID) => \(document.data())")
+                                }
+                            }
+                        }
+                    })
                 }
             }
         }
@@ -309,47 +374,49 @@ class Firebase: NSObject {
             switch typeUser {
             case .doctor:
                 if let userADR = user {
-                Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
-                    print("Añade contacto en doctor " + userADR.email!)
-                    Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in
-                        if let documents = querySnapshot?.documents {
-                            for document in documents {
-                                let value = document.data()
-                                let gmailCont = value["Gmail"] as? String ?? ""
-                                if gmailCont == Firebase.sharedInstance.contact.sGmailContacto {
-                                    let uidContact = self.checkUidOfGmail()
-                                    //Firebase.sharedInstance.contact.sContactoID = uidContact
-                                    Firebase.sharedInstance.contact.sContactoID = userADR.uid
-                                    Firebase.sharedInstance.contact.sGmailContacto = userADR.email
-                                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(uidContact).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
+                    checkUidOfGmail(completion: {(uid) in
+                        let uidContact = uid
+                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
+                        print("Añade contacto en doctor " + userADR.email!)
+                        Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in
+                            if let documents = querySnapshot?.documents {
+                                for document in documents {
+                                    let value = document.data()
+                                    let gmailCont = value["Gmail"] as? String ?? ""
+                                    if gmailCont == Firebase.sharedInstance.contact.sGmailContacto {
+                                        
+                                        Firebase.sharedInstance.contact.sGmailContacto = userADR.email
+                                    Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(uidContact).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
+                                    }
+                                    
+                                    print("\(document.documentID) => \(document.data())")
                                 }
-                                
-                                print("\(document.documentID) => \(document.data())")
                             }
                         }
-                    }
+                    })
                 }
             case .patient:
                 if let userADR = user {
-                Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.uid).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
-                    print("Añade contacto en paciente " + userADR.email!)
-                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").addSnapshotListener { querySnapshot, error in
-                        if let documents = querySnapshot?.documents {
-                            for document in documents {
-                                let value = document.data()
-                                let gmailCont = value["Gmail"] as? String ?? ""
-                                if gmailCont == Firebase.sharedInstance.contact.sGmailContacto {
-                                    let uidContact = self.checkUidOfGmail()
-                                    //Firebase.sharedInstance.contact.sContactoID = uidContact
-                                    Firebase.sharedInstance.contact.sContactoID = userADR.uid
-                                    Firebase.sharedInstance.contact.sGmailContacto = userADR.email
-                                Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(uidContact).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
+                    checkUidOfGmail(completion: {(uid) in
+                        let uidContact = uid
+                        Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.uid).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
+                        print("Añade contacto en paciente " + userADR.email!)
+                        Firebase.sharedInstance.firStoreDB?.collection("Doctores").addSnapshotListener { querySnapshot, error in
+                            if let documents = querySnapshot?.documents {
+                                for document in documents {
+                                    let value = document.data()
+                                    let gmailCont = value["Gmail"] as? String ?? ""
+                                    if gmailCont == Firebase.sharedInstance.contact.sGmailContacto {
+                                        
+                                        Firebase.sharedInstance.contact.sGmailContacto = userADR.email
+                                    Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(uidContact).collection("Contactos").document(idColection).setData(Firebase.sharedInstance.contact.getMap())
+                                    }
+                                    
+                                    print("\(document.documentID) => \(document.data())")
                                 }
-                                
-                                print("\(document.documentID) => \(document.data())")
                             }
                         }
-                    }
+                    })
                 }
             }
         }
@@ -389,8 +456,8 @@ class Firebase: NSObject {
         }
     }
     
-    func checkUidOfGmail() -> String {
-        var uidContact = ""
+    func checkUidOfGmail(completion:@escaping (String)->Void) {
+        var uidContact:String = ""
         if let typeUser = ContainerNavigationController.userType {
             switch typeUser {
                 case .doctor:
@@ -398,8 +465,12 @@ class Firebase: NSObject {
                         if let documents = querySnapshot?.documents {
                             for document in documents {
                                 let value = document.data()
-                                if value["Gmail"] as? String ?? "" == Firebase.sharedInstance.contact.sGmailContacto {
+                                let gmailContactPat = Firebase.sharedInstance.contact.sGmailContacto
+                                let gmailPrescriptionPat = Firebase.sharedInstance.prescription.sGmailPaciente
+                                let gmailPat = value["Gmail"] as? String ?? ""
+                                if gmailPat == gmailContactPat || gmailPat == gmailPrescriptionPat{
                                     uidContact = document.documentID
+                                    completion(uidContact)
                                 }
                             }
                         }
@@ -409,15 +480,18 @@ class Firebase: NSObject {
                         if let documents = querySnapshot?.documents {
                             for document in documents {
                                 let value = document.data()
-                                if value["Gmail"] as? String ?? "" == Firebase.sharedInstance.contact.sGmailContacto {
+                                let gmailContactDoc = Firebase.sharedInstance.contact.sGmailContacto
+                                let gmailPrescriptionDoc = Firebase.sharedInstance.prescription.sGmailDoctor
+                                let gmailDoc = value["Gmail"] as? String ?? ""
+                                if gmailDoc == gmailContactDoc || gmailDoc == gmailPrescriptionDoc{
                                     uidContact = document.documentID
+                                    completion(uidContact)
                                 }
                             }
                         }
                     }
             }
         }
-        return uidContact
     }
     
     func getContacts(completion:@escaping ([Contact])->Void) -> ListenerRegistration? {
@@ -431,10 +505,8 @@ class Firebase: NSObject {
                             Firebase.sharedInstance.arrContacts = []
                             for document in documents {
                                 let value = document.data()
-                                let idContact = value["ID Contacto"] as? String ?? ""
                                 let gmailContact = value["Gmail Contacto"] as? String ?? ""
                                 let contact = Contact()
-                                contact.sContactoID = idContact
                                 contact.sGmailContacto = gmailContact
                                 Firebase.sharedInstance.arrContacts.append(contact)
                                 
@@ -451,10 +523,8 @@ class Firebase: NSObject {
                             Firebase.sharedInstance.arrContacts = []
                             for document in documents {
                                 let value = document.data()
-                                let idContact = value["ID Contacto"] as? String ?? ""
                                 let gmailContact = value["Gmail Contacto"] as? String ?? ""
                                 let contact = Contact()
-                                contact.sContactoID = idContact
                                 contact.sGmailContacto = gmailContact
                                 Firebase.sharedInstance.arrContacts.append(contact)
                                 
