@@ -15,7 +15,7 @@ class EmptyCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        emptyView?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        emptyView?.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         emptyView?.layer.cornerRadius = 25
         emptyView?.layer.masksToBounds = true
     }

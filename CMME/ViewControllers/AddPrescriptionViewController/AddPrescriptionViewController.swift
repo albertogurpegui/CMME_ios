@@ -24,8 +24,6 @@ class AddPrescriptionViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var presciptionImage: UIImageView!
     var pickerData: [String] = []
     //var imageData: Data?
-    var downloadURL:String?
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -58,7 +56,7 @@ class AddPrescriptionViewController: UIViewController, UIImagePickerControllerDe
         var selectedImage: UIImage?
         if let originalImage = info[.originalImage] as? UIImage {
             selectedImage = originalImage
-            self.presciptionImage.image = selectedImage!
+            presciptionImage.image = selectedImage
             picker.dismiss(animated: true, completion: nil)
         }
     }
@@ -70,35 +68,37 @@ class AddPrescriptionViewController: UIViewController, UIImagePickerControllerDe
     
     @IBAction func createButtonPressed() {
         print("Has clickado en añadir")
-        var urlImage:String?
         if ((gmail.text?.elementsEqual(""))!)  {
             self.delegate?.errorAddPrescriptionViewController(self)
         }else{
             Firebase.sharedInstance.prescription.sGmailPaciente = gmail.text
+            Firebase.sharedInstance.prescription.sGmailDoctor = Firebase.sharedInstance.user?.email
+            var downloadURL:String = ""
             let tiempoMilis:Int = Int((Date().timeIntervalSince1970 * 1000.0).rounded())
             let rutaStorage:String = String(format: "prescription%d.jpeg", tiempoMilis)
             let storageRef = Firebase.sharedInstance.firStorageRef?.child(rutaStorage)
             if let uploadData = presciptionImage.image?.jpegData(compressionQuality: 1){
-                let metadata =  StorageMetadata()
-                metadata.contentType = "image/jpeg"
-                storageRef?.putData(uploadData, metadata: metadata) { (metadata, error) in
+                let metadataStorage =  StorageMetadata()
+                metadataStorage.contentType = "image/jpeg"
+                storageRef?.putData(uploadData, metadata: metadataStorage, completion: { (metadata, error) in
                     if metadata != nil {
-                        Firebase.sharedInstance.firStorageRef?.child((metadata?.path)!).downloadURL { url, error in
-                            if let url = url {
-                                Firebase.sharedInstance.prescription.sURLPrescription = url.absoluteString
-                                urlImage = url.absoluteString
+                        print("++++++++++++++++++++++++++", metadata?.path ?? "******************")
+                        storageRef?.downloadURL(completion: { (url, error) in
+                            if error != nil {
+                                print(error ?? "*****************")
                             } else {
-                                print(error.debugDescription)
+                                downloadURL = (url?.absoluteString)!
+                                print("---------------------", downloadURL)
+                                Firebase.sharedInstance.prescription.sURLPrescription = downloadURL
+                                Firebase.sharedInstance.addPrescription()
+                                self.delegate?.addPrescriptionViewController(self, didEditPrescription: Firebase.sharedInstance.prescription)
                             }
-                        }
+                        })
                     } else {
-                        print(error.debugDescription)
+                        print("**************************", error.debugDescription)
                     }
-                }
-                
+                })
             }
-            Firebase.sharedInstance.addPrescription(gmailPat: gmail.text ?? "", urlImage: urlImage ?? "")
-            self.delegate?.addPrescriptionViewController(self, didEditPrescription: Firebase.sharedInstance.prescription)
         }
     }
     

@@ -13,4 +13,5 @@ target 'CMME' do
   pod 'lottie-ios'
   pod 'MessageKit'
   pod 'MessageInputBar'
+  pod 'SDWebImage'
 end

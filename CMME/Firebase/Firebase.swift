@@ -140,6 +140,59 @@ class Firebase: NSObject {
         }
     }
     
+    func getUserPrescriptions(completion:@escaping ([Prescription])->Void) -> ListenerRegistration? {
+        var listenerMeeting: ListenerRegistration? = nil
+        if let typeUser = ContainerNavigationController.userType {
+            switch typeUser {
+            case .doctor:
+                if let userADR = user {
+                    listenerMeeting =  (Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Recetas").addSnapshotListener { querySnapshot, error in
+                        if let documents = querySnapshot?.documents {
+                            Firebase.sharedInstance.arrMeeting = []
+                            for document in documents {
+                                let value = document.data()
+                                let gmailDocPrescription = value["Gmail Doctor"] as? String ?? ""
+                                let gmailPatPrescription = value["Gmail Paciente"] as? String ?? ""
+                                let imageUrlPrescription = value["URL Receta"] as? String ?? ""
+                                let prescription = Prescription()
+                                prescription.sGmailDoctor = gmailDocPrescription
+                                prescription.sGmailPaciente = gmailPatPrescription
+                                prescription.sURLPrescription = imageUrlPrescription
+                                Firebase.sharedInstance.arrPrescription.append(prescription)
+                                
+                                print("\(document.documentID) => \(document.data())")
+                            }
+                            completion(Firebase.sharedInstance.arrPrescription)
+                        }
+                        })!
+                }
+            case .patient:
+                if let userADR = user {
+                    listenerMeeting =  (Firebase.sharedInstance.firStoreDB?.collection("Pacientes").document(userADR.uid).collection("Recetas").addSnapshotListener { querySnapshot, error in
+                        if let documents = querySnapshot?.documents {
+                            Firebase.sharedInstance.arrMeeting = []
+                            for document in documents {
+                                let value = document.data()
+                                let gmailDocPrescription = value["Nombre Doctor Completo"] as? String ?? ""
+                                let gmailPatPrescription = value["Nombre Paciente Completo"] as? String ?? ""
+                                let imageUrlPrescription = value["Fecha Cita"] as? String ?? ""
+                                let prescription = Prescription()
+                                prescription.sGmailDoctor = gmailDocPrescription
+                                prescription.sGmailPaciente = gmailPatPrescription
+                                prescription.sURLPrescription = imageUrlPrescription
+                                Firebase.sharedInstance.arrPrescription.append(prescription)
+                                
+                                print("\(document.documentID) => \(document.data())")
+                            }
+                            completion(Firebase.sharedInstance.arrPrescription)
+                        }
+                        })!
+                }
+            }
+        }
+        return listenerMeeting
+    }
+    
     func getUserMeetings(completion:@escaping ([Meeting])->Void) -> ListenerRegistration? {
         var listenerMeeting: ListenerRegistration? = nil
         if let typeUser = ContainerNavigationController.userType {
@@ -311,7 +364,7 @@ class Firebase: NSObject {
         }
     }
     
-    func addPrescription(gmailPat:String, urlImage:String) {
+    func addPrescription() {
         if let typeUser = ContainerNavigationController.userType {
             let date = Date()
             let format = DateFormatter()
@@ -321,9 +374,6 @@ class Firebase: NSObject {
                 if let userADR = user {
                     checkUidOfGmail(completion: {(uid) in
                         let uidContact = uid
-                        Firebase.sharedInstance.prescription.sURLPrescription = urlImage
-                        Firebase.sharedInstance.prescription.sGmailPaciente = gmailPat
-                        Firebase.sharedInstance.prescription.sGmailDoctor = userADR.email
                     Firebase.sharedInstance.firStoreDB?.collection("Doctores").document(userADR.uid).collection("Recetas").document(format.string(from: date)).setData(Firebase.sharedInstance.prescription.getMap())
                         print("Añade receta en doctor " + userADR.email!)
                         Firebase.sharedInstance.firStoreDB?.collection("Pacientes").addSnapshotListener { querySnapshot, error in

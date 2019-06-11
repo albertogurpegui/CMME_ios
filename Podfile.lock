@@ -114,6 +114,9 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.7.0)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
   - SwiftMessages (6.0.2):
     - SwiftMessages/App (= 6.0.2)
   - SwiftMessages/App (6.0.2)
@@ -126,6 +129,7 @@ DEPENDENCIES:
   - lottie-ios
   - MessageInputBar
   - MessageKit
+  - SDWebImage
   - SwiftMessages
 
 SPEC REPOS:
@@ -150,6 +154,7 @@ SPEC REPOS:
     - MessageKit
     - nanopb
     - Protobuf
+    - SDWebImage
     - SwiftMessages
 
 SPEC CHECKSUMS:
@@ -173,8 +178,9 @@ SPEC CHECKSUMS:
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
 
-PODFILE CHECKSUM: 9c4c7c042f6b5268288756ad06faf62db22e91cf
+PODFILE CHECKSUM: 5ecd7ecb307b588e7710ceeae9696113483cd8a5
 
 COCOAPODS: 1.5.3

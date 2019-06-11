@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PrescriptionViewController: UIViewController {
     
@@ -23,8 +24,12 @@ class PrescriptionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setGradientBackground()
         registerCell()
+        self.view.setGradientBackground()
+        Firebase.sharedInstance.getUserPrescriptions(completion: { (prescriptions) in
+            self.arrPrescriptions = prescriptions
+            self.tableView?.reloadData()
+        })
     }
     
     internal func registerCell(){
@@ -82,7 +87,11 @@ extension PrescriptionViewController: UITableViewDelegate, UITableViewDataSource
             return cell
         }
         let cell: PrescriptionCell = tableView.dequeueReusableCell(withIdentifier: "PrescriptionCell", for: indexPath) as! PrescriptionCell
-        //cell.imagePrescription?.image = arrPrescriptions[indexPath.row].sURLPrescription
+        let prescription = arrPrescriptions[indexPath.row]
+        print("*********************", prescription.sURLPrescription!)
+        cell.imagePrescription?.sd_setImage(with: URL(string: prescription.sURLPrescription!), placeholderImage: UIImage(named: "Prescription"))
+        cell.gmailDoctor?.text = prescription.sGmailDoctor
+        cell.gmailPaciente?.text = prescription.sGmailPaciente
         return cell
     }
 }

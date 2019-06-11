@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alberto Gurpegui Ramon. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Prescription: NSObject {
     let IDURLPrescription = "URL Receta"

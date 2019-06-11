@@ -19,7 +19,7 @@ class MeetingCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        meetingView?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        meetingView?.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         meetingView?.layer.cornerRadius = 25
         meetingView?.layer.masksToBounds = true
         

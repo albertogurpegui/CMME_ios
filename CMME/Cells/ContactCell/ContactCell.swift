@@ -14,7 +14,10 @@ class ContactCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        nameContact?.layer.cornerRadius = 8
+        nameContact?.layer.masksToBounds = true
+        nameContact?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        nameContact?.layer.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
