@@ -274,12 +274,12 @@
 		162BD09C221E92CE00C1BBE4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				16ED3E572238FA5900DB8F36 /* AddMeetingViewController */,
 				1601F15422ACF0DB00569BB1 /* AddPrescriptionViewController */,
 				16FCCDB9229EFAF70071C35D /* AddContactViewController */,
 				16E91520229C5F90007C7095 /* MessageViewController */,
 				16FEC7DC229947D9009F400B /* ChatViewController */,
 				16024A2122252ED1006F047E /* MeetingViewController */,
-				16ED3E572238FA5900DB8F36 /* AddMeetingViewController */,
 				16024A30222546B7006F047E /* HospitalsViewController */,
 				16024A2B222545EA006F047E /* PrescriptionViewController */,
 				16A982E82223FCD600521802 /* RegisterDoctorViewController */,

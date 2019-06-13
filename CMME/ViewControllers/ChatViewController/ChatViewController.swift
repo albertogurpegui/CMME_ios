@@ -17,18 +17,6 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var arrContacts:[Contact] = []
     
-    
-    
-    /*override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.setGradientBackground()
-        let childVC = MessageViewController()
-        addChild(childVC)
-        self.view.addSubview(childVC.view)
-        childVC.didMove(toParent:self)
-        self.becomeFirstResponder()
-    }*/
-    
     init(){
         super.init(nibName: "ChatViewController", bundle: nil)
     }
@@ -41,6 +29,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         self.view.setGradientBackground()
+        arrContacts = []
         Firebase.sharedInstance.getContacts(completion: { (contacts) in
             self.arrContacts = contacts
             self.tableView.reloadData()
@@ -99,7 +88,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         if Firebase.sharedInstance.arrContacts.count == 0 {
             return 95.0
         }else {
-            return 60.0
+            return 80
         }
     }
     
@@ -117,6 +106,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }else {
             let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
+            cell.selectionStyle = .none
             let contact = Firebase.sharedInstance.arrContacts[indexPath.row]
             cell.nameContact?.text = contact.sGmailContacto
             return cell

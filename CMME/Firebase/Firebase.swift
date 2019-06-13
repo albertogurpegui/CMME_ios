@@ -33,6 +33,7 @@ class Firebase: NSObject {
     var arrMessages:[Message] = []
     var userType: TypeUser?
     var user: User?
+    var stError = ""
     
     func initFireBase(){
         FirebaseApp.configure()
@@ -68,11 +69,13 @@ class Firebase: NSObject {
                             }
                             else{
                                 print("ERROR EN LOGEO ", error!)
+                                Firebase.sharedInstance.stError = error?.localizedDescription ?? ""
                             }
                         }
                     }
                     else {
                         print("ERROR EN LOGEO ", error!)
+                        Firebase.sharedInstance.stError = error?.localizedDescription ?? ""
                     }
                 }
             case .patient:
@@ -90,11 +93,13 @@ class Firebase: NSObject {
                             }
                             else{
                                 print(error!)
+                                Firebase.sharedInstance.stError = error?.localizedDescription ?? ""
                             }
                         }
                     }
                     else {
                         print("ERROR EN LOGEO ", error!)
+                        Firebase.sharedInstance.stError = error?.localizedDescription ?? ""
                     }
                 }
             }

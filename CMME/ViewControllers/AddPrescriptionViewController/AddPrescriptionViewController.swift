@@ -127,14 +127,14 @@ class AddPrescriptionViewController: UIViewController, UIImagePickerControllerDe
                 gmail.isUserInteractionEnabled = true
                 let tapUILabelName = UITapGestureRecognizer(target: self, action: #selector(clickUILabelName(_:)))
                 gmail.addGestureRecognizer(tapUILabelName)
-                presciptionImage.image = UIImage(named: "Prescription")
+                presciptionImage.image = UIImage(named: "AddImagePrescription")
                 presciptionImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickUIImagePrescription)))
                 presciptionImage.isUserInteractionEnabled = true
             case .patient:
                 gmail.isUserInteractionEnabled = true
                 let tapUILabelName = UITapGestureRecognizer(target: self, action: #selector(clickUILabelName(_:)))
                 gmail.addGestureRecognizer(tapUILabelName)
-                presciptionImage.image = UIImage(named: "Prescription")
+                presciptionImage.image = UIImage(named: "AddImagePrescription")
                 presciptionImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickUIImagePrescription)))
                 presciptionImage.isUserInteractionEnabled = true
             }

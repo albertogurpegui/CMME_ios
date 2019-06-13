@@ -31,6 +31,7 @@ class HospitalsViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "CMME"
         self.view.setGradientBackground()
         checkLocationServices()
         

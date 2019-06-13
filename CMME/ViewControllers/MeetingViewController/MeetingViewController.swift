@@ -26,6 +26,7 @@ class MeetingViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         self.view.setGradientBackground()
+        arrMeetings = []
         Firebase.sharedInstance.getUserMeetings(completion: { (meetings) in
             self.arrMeetings = meetings
             self.tableView.reloadData()
@@ -84,7 +85,7 @@ extension MeetingViewController: UITableViewDelegate, UITableViewDataSource {
         if Firebase.sharedInstance.arrMeeting.count == 0 {
             return 95.0
         }else {
-            return 220.0
+            return 255
         }
     }
     

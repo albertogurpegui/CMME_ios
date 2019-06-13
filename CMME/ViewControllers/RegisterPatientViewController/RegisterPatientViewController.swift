@@ -11,7 +11,7 @@ import Firebase
 
 class RegisterPatientViewController: UIViewController {
     
-    @IBOutlet weak var backgroundView: UIView?
+    @IBOutlet weak var imageUser: UIImageView?
     @IBOutlet weak var nomComplPatient: UITextField?
     @IBOutlet weak var contrasennaPatient: UITextField?
     @IBOutlet weak var gmailPatient: UITextField?
@@ -42,11 +42,18 @@ class RegisterPatientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
-        backgroundView?.setGradientBackground()
+        self.view.setGradientBackground()
+        imageUser?.image = UIImage(named: "addImageUser")
         registerButton?.layer.cornerRadius = 8
         registerButton?.layer.masksToBounds = true
         registerButton?.layer.borderColor = UIColor.white.cgColor
         registerButton?.layer.borderWidth = 1
+    }
+    
+    func isValidEmail(string: String) -> Bool {
+        let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailReg)
+        return emailTest.evaluate(with: string)
     }
     
     @IBAction func executeRegister() {
@@ -58,7 +65,11 @@ class RegisterPatientViewController: UIViewController {
             let alert = UIAlertController(title: "ERROR", message: "Esta erroneo o vacio algun campo", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-        }else{
+        } else if isValidEmail(string: gmailPatient?.text ?? "") == false {
+            let alert = UIAlertController(title: "ERROR", message: "El gmail del usuario no es valido", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else{
             if let gmail = gmailPatient?.text {
                 sGmail = gmail
             }

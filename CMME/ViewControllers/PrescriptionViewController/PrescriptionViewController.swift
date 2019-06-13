@@ -25,6 +25,7 @@ class PrescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
+        arrPrescriptions = []
         self.view.setGradientBackground()
         Firebase.sharedInstance.getUserPrescriptions(completion: { (prescriptions) in
             self.arrPrescriptions = prescriptions
@@ -63,14 +64,18 @@ class PrescriptionViewController: UIViewController {
 
 extension PrescriptionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if Firebase.sharedInstance.arrPrescription.count == 0 {
+            return 1
+        }else {
+            return Firebase.sharedInstance.arrPrescription.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if arrPrescriptions.count == 0 {
             return 110.0
         }
-        return 250
+        return 320
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

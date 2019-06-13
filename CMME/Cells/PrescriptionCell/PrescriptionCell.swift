@@ -10,12 +10,17 @@ import UIKit
 
 class PrescriptionCell: UITableViewCell {
     
+    @IBOutlet weak var prescriptionView: UIView?
     @IBOutlet weak var gmailDoctor: UILabel?
     @IBOutlet weak var gmailPaciente: UILabel?
     @IBOutlet weak var imagePrescription: UIImageView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        prescriptionView?.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        prescriptionView?.layer.cornerRadius = 25
+        prescriptionView?.layer.masksToBounds = true
+        
         gmailDoctor?.layer.cornerRadius = 8
         gmailDoctor?.layer.masksToBounds = true
         gmailDoctor?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor

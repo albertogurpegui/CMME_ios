@@ -16,6 +16,7 @@ class MessageViewController: MessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = gmailContact
         member = Member(name: Firebase.sharedInstance.user?.email ?? "", color: .blue)
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self

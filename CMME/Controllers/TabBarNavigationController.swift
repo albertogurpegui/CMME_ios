@@ -30,6 +30,7 @@ class TabBarNavigationController: UITabBarController {
     }
     
     override func viewDidLoad() {
+        self.title = "CMME"
         makeTabBar()
     }
     
@@ -90,7 +91,7 @@ class TabBarNavigationController: UITabBarController {
                 prescriptionVC.tabBarItem.image = UIImage(named: "Prescription")
                 chatsVC.tabBarItem.title = "Chats"
                 chatsVC.tabBarItem.tag = 3
-                chatsVC.tabBarItem.image = UIImage(named: "")
+                chatsVC.tabBarItem.image = UIImage(named: "Chat")
                 
                 self.viewControllers = [meetingVC,
                                         prescriptionVC,
@@ -111,7 +112,7 @@ class TabBarNavigationController: UITabBarController {
                 hospitalsVC.tabBarItem.image = UIImage(named: "Hospital")
                 chatsVC.tabBarItem.title = "Chats"
                 chatsVC.tabBarItem.tag = 4
-                chatsVC.tabBarItem.image = UIImage(named: "")
+                chatsVC.tabBarItem.image = UIImage(named: "Chat")
                 
                 self.viewControllers = [meetingVC,
                                         prescriptionVC,

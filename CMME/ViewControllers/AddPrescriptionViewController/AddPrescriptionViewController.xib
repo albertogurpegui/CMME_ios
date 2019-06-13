@@ -24,8 +24,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvQ-NT-UQr">
+                    <rect key="frame" x="0.0" y="447" width="375" height="220"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="0MK-mS-1C3"/>
+                        <outlet property="delegate" destination="-1" id="zub-6Z-79h"/>
+                    </connections>
+                </pickerView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lgt-We-A1Q">
-                    <rect key="frame" x="45" y="95" width="285" height="270"/>
+                    <rect key="frame" x="45" y="58" width="285" height="329"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFE-la-oMd">
                             <rect key="frame" x="8" y="8" width="269" height="30"/>
@@ -38,29 +45,29 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0s7-u1-vbA">
-                            <rect key="frame" x="8" y="46" width="269" height="176"/>
+                            <rect key="frame" x="8" y="46" width="269" height="235"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="176" id="Q9R-9B-Pgf"/>
+                                <constraint firstAttribute="height" constant="235" id="Q9R-9B-Pgf"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPm-HR-QW0">
-                            <rect key="frame" x="239" y="230" width="38" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="38" id="GNQ-5i-ZXg"/>
-                            </constraints>
-                            <state key="normal" title="Crear"/>
-                            <connections>
-                                <action selector="createButtonPressed" destination="-1" eventType="touchUpInside" id="0LG-y4-sJk"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pul-bJ-MDz">
-                            <rect key="frame" x="8" y="230" width="61" height="32"/>
+                            <rect key="frame" x="8" y="289" width="61" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="61" id="aaq-6d-UKn"/>
                             </constraints>
                             <state key="normal" title="Cancelar"/>
                             <connections>
                                 <action selector="cancelButtonPressed" destination="-1" eventType="touchUpInside" id="3QY-dB-J59"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPm-HR-QW0">
+                            <rect key="frame" x="239" y="289" width="38" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="38" id="GNQ-5i-ZXg"/>
+                            </constraints>
+                            <state key="normal" title="Crear"/>
+                            <connections>
+                                <action selector="createButtonPressed" destination="-1" eventType="touchUpInside" id="0LG-y4-sJk"/>
                             </connections>
                         </button>
                     </subviews>
@@ -77,30 +84,23 @@
                         <constraint firstAttribute="bottom" secondItem="kPm-HR-QW0" secondAttribute="bottom" constant="8" id="fqg-Qw-MTA"/>
                         <constraint firstItem="cFE-la-oMd" firstAttribute="top" secondItem="Lgt-We-A1Q" secondAttribute="top" constant="8" id="ntU-Kk-Yne"/>
                         <constraint firstAttribute="trailing" secondItem="cFE-la-oMd" secondAttribute="trailing" constant="8" id="pgd-kA-TeS"/>
-                        <constraint firstAttribute="height" constant="270" id="u5W-BT-LyR"/>
+                        <constraint firstAttribute="height" constant="329" id="u5W-BT-LyR"/>
                         <constraint firstItem="pul-bJ-MDz" firstAttribute="leading" secondItem="Lgt-We-A1Q" secondAttribute="leading" constant="8" id="vH1-g1-8hR"/>
                     </constraints>
                 </view>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvQ-NT-UQr">
-                    <rect key="frame" x="0.0" y="447" width="375" height="220"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="0MK-mS-1C3"/>
-                        <outlet property="delegate" destination="-1" id="zub-6Z-79h"/>
-                    </connections>
-                </pickerView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="DvQ-NT-UQr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="90T-w7-tSQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Lgt-We-A1Q" secondAttribute="trailing" constant="45" id="BkG-mP-KLm"/>
-                <constraint firstItem="Lgt-We-A1Q" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="75" id="Nqg-E9-UHk"/>
+                <constraint firstItem="Lgt-We-A1Q" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="38" id="Nqg-E9-UHk"/>
                 <constraint firstItem="Lgt-We-A1Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="cPb-LF-LSb"/>
                 <constraint firstItem="DvQ-NT-UQr" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="mpo-sf-2qk"/>
                 <constraint firstItem="DvQ-NT-UQr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="rqC-IY-G59"/>
-                <constraint firstItem="DvQ-NT-UQr" firstAttribute="top" secondItem="Lgt-We-A1Q" secondAttribute="bottom" constant="82" id="wLV-ni-DT1"/>
+                <constraint firstItem="DvQ-NT-UQr" firstAttribute="top" secondItem="Lgt-We-A1Q" secondAttribute="bottom" constant="60" id="wLV-ni-DT1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="52.173913043478265" y="48.097826086956523"/>
+            <point key="canvasLocation" x="52" y="47.226386806596707"/>
         </view>
     </objects>
 </document>

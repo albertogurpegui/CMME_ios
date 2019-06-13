@@ -85,6 +85,7 @@
                             </constraints>
                             <state key="normal" title="REGISTRARTE">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="clickRegisterButton" destination="-1" eventType="touchUpInside" id="ehD-YK-w8G"/>
@@ -120,7 +121,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="KfP-UU-Qkq" firstAttribute="leading" secondItem="1vZ-T9-QTA" secondAttribute="leading" constant="25" id="0zf-Ky-BnY"/>
                         <constraint firstItem="Lag-vk-dxz" firstAttribute="top" secondItem="1vZ-T9-QTA" secondAttribute="top" constant="50" id="1An-Bu-VcS"/>
@@ -138,7 +139,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="1vZ-T9-QTA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Isf-uB-ona"/>
                 <constraint firstItem="1vZ-T9-QTA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cSf-lP-317"/>
