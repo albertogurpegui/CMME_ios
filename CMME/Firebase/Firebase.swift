@@ -178,9 +178,9 @@ class Firebase: NSObject {
                             Firebase.sharedInstance.arrMeeting = []
                             for document in documents {
                                 let value = document.data()
-                                let gmailDocPrescription = value["Nombre Doctor Completo"] as? String ?? ""
-                                let gmailPatPrescription = value["Nombre Paciente Completo"] as? String ?? ""
-                                let imageUrlPrescription = value["Fecha Cita"] as? String ?? ""
+                                let gmailDocPrescription = value["Gmail Doctor"] as? String ?? ""
+                                let gmailPatPrescription = value["Gmail Paciente"] as? String ?? ""
+                                let imageUrlPrescription = value["URL Receta"] as? String ?? ""
                                 let prescription = Prescription()
                                 prescription.sGmailDoctor = gmailDocPrescription
                                 prescription.sGmailPaciente = gmailPatPrescription

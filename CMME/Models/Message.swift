@@ -39,6 +39,7 @@ import MessageKit
 struct Member {
     let name: String
     let color: UIColor
+    //let image: String
 }
 
 struct Message {
